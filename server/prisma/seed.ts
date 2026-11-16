@@ -26,6 +26,28 @@ async function main() {
     create: { email, name: "Super Admin", hashPassword, role: Role.SUPER_ADMIN },
   });
   console.log(`Seeded super admin: ${email}`);
+
+  // Starter content only — admins replace it from the admin panel.
+  await prisma.labInfo.upsert({
+    where: { id: 1 },
+    update: {},
+    create: { id: 1, name: "MAIA Lab" },
+  });
+
+  const projectCount = await prisma.project.count();
+  if (projectCount === 0) {
+    await prisma.project.create({
+      data: {
+        slug: "example-project",
+        title: "Example project",
+        summary: "A draft that shows how projects look. Edit or delete it from the admin panel.",
+        description: "## Overview\n\nDescribe the research question, methods and results here.",
+        tags: ["example"],
+        published: false,
+      },
+    });
+  }
+  console.log("Seeded starter lab info and example project");
 }
 
 main()

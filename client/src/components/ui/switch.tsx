@@ -1,24 +1,34 @@
 import * as React from "react";
+import { cn } from "@/lib/utils";
 
-interface SwitchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface SwitchProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {
   checked: boolean;
   onCheckedChange: (checked: boolean) => void;
 }
 
-export function Switch({ checked, onCheckedChange, ...rest }: SwitchProps) {
+export function Switch({ checked, onCheckedChange, className, ...rest }: SwitchProps) {
+  const handleClick = () => {
+    onCheckedChange(!checked);
+  };
+
   return (
     <button
       type="button"
-      onClick={() => onCheckedChange(!checked)}
+      role="switch"
+      aria-checked={checked}
+      onClick={handleClick}
       {...rest}
-      className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ${
-        checked ? "bg-primary" : "bg-muted"
-      }`}
+      className={cn(
+        "relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50",
+        checked ? "bg-primary" : "bg-input",
+        className,
+      )}
     >
       <span
-        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
-          checked ? "translate-x-6" : "translate-x-1"
-        }`}
+        className={cn(
+          "inline-block size-5 rounded-full bg-white shadow transition-transform",
+          checked ? "ltr:translate-x-5.5 rtl:-translate-x-5.5" : "ltr:translate-x-0.5 rtl:-translate-x-0.5",
+        )}
       />
     </button>
   );

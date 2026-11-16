@@ -1,14 +1,60 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, type RouteObject } from "react-router-dom";
 import ProtectedLayout from "@/common/components/layouts/ProtectedLayout";
-import Login from "@/screens/login/Login";
-import Home from "@/screens/home/Home";
+import PublicLayout from "@/common/components/layouts/PublicLayout";
 import NotFound from "@/screens/not-found/NotFound";
+import HomePage from "@/screens/public/home/HomePage";
+import ProjectsPage from "@/screens/public/projects/ProjectsPage";
+import ProjectDetailPage from "@/screens/public/projects/ProjectDetailPage";
+import TeamPage from "@/screens/public/team/TeamPage";
+import PublicationsPage from "@/screens/public/publications/PublicationsPage";
+import NewsPage from "@/screens/public/news/NewsPage";
+import NewsDetailPage from "@/screens/public/news/NewsDetailPage";
+import ContactPage from "@/screens/public/contact/ContactPage";
+
+/** Login and admin screens are code-split so public visitors never download the editor bundle. */
+function lazyPage(load: () => Promise<{ default: React.ComponentType }>): Pick<RouteObject, "lazy"> {
+  return { lazy: async () => ({ Component: (await load()).default }) };
+}
+
+const adminRoutes: RouteObject[] = [
+  { index: true, ...lazyPage(() => import("@/screens/admin/dashboard/Dashboard")) },
+  { path: "projects", ...lazyPage(() => import("@/screens/admin/projects/ProjectsList")) },
+  { path: "projects/new", ...lazyPage(() => import("@/screens/admin/projects/ProjectEditor")) },
+  { path: "projects/:id", ...lazyPage(() => import("@/screens/admin/projects/ProjectEditor")) },
+  { path: "members", ...lazyPage(() => import("@/screens/admin/members/MembersList")) },
+  { path: "members/new", ...lazyPage(() => import("@/screens/admin/members/MemberEditor")) },
+  { path: "members/:id", ...lazyPage(() => import("@/screens/admin/members/MemberEditor")) },
+  { path: "publications", ...lazyPage(() => import("@/screens/admin/publications/PublicationsList")) },
+  { path: "publications/new", ...lazyPage(() => import("@/screens/admin/publications/PublicationEditor")) },
+  { path: "publications/:id", ...lazyPage(() => import("@/screens/admin/publications/PublicationEditor")) },
+  { path: "news", ...lazyPage(() => import("@/screens/admin/news/NewsList")) },
+  { path: "news/new", ...lazyPage(() => import("@/screens/admin/news/NewsEditor")) },
+  { path: "news/:id", ...lazyPage(() => import("@/screens/admin/news/NewsEditor")) },
+  { path: "media", ...lazyPage(() => import("@/screens/admin/media/MediaLibrary")) },
+  { path: "lab-info", ...lazyPage(() => import("@/screens/admin/lab-info/LabInfoEditor")) },
+  { path: "presentations", ...lazyPage(() => import("@/screens/admin/presentations/PresentationsBuilder")) },
+  { path: "users", ...lazyPage(() => import("@/screens/admin/users/UsersList")) },
+];
 
 export const router = createBrowserRouter([
-  { path: "/login", element: <Login /> },
   {
+    element: <PublicLayout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/projects", element: <ProjectsPage /> },
+      { path: "/projects/:slug", element: <ProjectDetailPage /> },
+      { path: "/team", element: <TeamPage /> },
+      { path: "/publications", element: <PublicationsPage /> },
+      { path: "/news", element: <NewsPage /> },
+      { path: "/news/:slug", element: <NewsDetailPage /> },
+      { path: "/contact", element: <ContactPage /> },
+    ],
+  },
+  { path: "/login", ...lazyPage(() => import("@/screens/login/Login")) },
+  {
+    path: "/admin",
     element: <ProtectedLayout />,
-    children: [{ path: "/", element: <Home /> }],
+    children: adminRoutes,
   },
   { path: "*", element: <NotFound /> },
 ]);

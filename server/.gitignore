@@ -32,3 +32,6 @@ prisma/migrations/dev/
 
 # Test coverage
 coverage/
+
+# Uploaded media
+uploads/

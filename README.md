@@ -1,6 +1,17 @@
 # maialab
 
-Full-stack app: **React** client + **Express + TypeScript** server, **PostgreSQL** via **Prisma**.
+Lab website + admin panel: **React** client + **Express + TypeScript** server, **PostgreSQL** via **Prisma**.
+
+## What it does
+
+- **Public site** (`/`): home, projects (index + detail pages with gallery), team, publications, news and contact. Available in English, Hebrew, Arabic and Russian, with RTL and dark mode.
+- **Admin panel** (`/admin`, sign in at `/login` with password + emailed code):
+  - edit lab info, projects (cover, Markdown description, drag-to-reorder gallery, team), team members, publications (with PDFs) and news;
+  - manage the media library;
+  - see a dashboard with recent changes (every admin write is audited).
+  - Super admins also manage admin accounts.
+- **PowerPoint export**: a deck per project (Export PPTX in the project editor), or a lab overview deck built from chosen projects (Admin → Presentations).
+- Uploaded files are stored in `server/uploads/` (or `UPLOAD_DIR`) and served at `/uploads`.
 
 ## Prerequisites
 
@@ -34,7 +45,7 @@ npm install
 cp .env.example .env      # then set JWT_SECRET and SEED_ADMIN_PASSWORD
 npm run db:generate
 npm run db:migrate
-npm run db:seed           # creates the super admin from SEED_ADMIN_*
+npm run db:seed           # creates the super admin from SEED_ADMIN_*, starter lab info and a draft example project
 npm run dev
 ```
 

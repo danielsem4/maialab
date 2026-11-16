@@ -6,7 +6,7 @@ datasource db {
   provider = "postgresql"
 }
 
-// Placeholder roles — redefine once the domain is specified.
+// SUPER_ADMIN manages admin accounts; ADMIN edits content. USER is reserved.
 enum Role {
   SUPER_ADMIN
   ADMIN
@@ -24,6 +24,7 @@ model User {
 
   auditLogs AuditLog[]
   otpCodes  OtpCode[]
+  media     Media[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -58,4 +59,170 @@ model AuditLog {
 
   @@index([entityType, entityId])
   @@index([userId])
+}
+
+// ─── Lab content ────────────────────────────────────────────────
+
+enum ProjectStatus {
+  ACTIVE
+  COMPLETED
+  PLANNED
+}
+
+enum MemberCategory {
+  PI
+  STAFF
+  PHD
+  MSC
+  BSC
+  ALUMNI
+}
+
+model Media {
+  id           Int    @id @default(autoincrement())
+  filename     String @unique
+  originalName String
+  mimeType     String
+  size         Int
+  width        Int?
+  height       Int?
+  alt          String @default("")
+  uploadedById Int?
+
+  uploadedBy User? @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+
+  labLogos        LabInfo[]      @relation("LabLogo")
+  labHeroes       LabInfo[]      @relation("LabHero")
+  projectCovers   Project[]
+  projectImages   ProjectImage[]
+  memberPhotos    Member[]
+  publicationPdfs Publication[]
+  newsCovers      NewsPost[]
+
+  createdAt DateTime @default(now())
+}
+
+model LabInfo {
+  id           Int    @id @default(1)
+  name         String
+  tagline      String @default("")
+  about        String @default("")
+  mission      String @default("")
+  contactEmail String @default("")
+  address      String @default("")
+  mapUrl       String @default("")
+  socialLinks  Json   @default("{}")
+  logoMediaId  Int?
+  heroMediaId  Int?
+
+  logo Media? @relation("LabLogo", fields: [logoMediaId], references: [id], onDelete: SetNull)
+  hero Media? @relation("LabHero", fields: [heroMediaId], references: [id], onDelete: SetNull)
+
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id           Int           @id @default(autoincrement())
+  slug         String        @unique
+  title        String
+  summary      String        @default("")
+  description  String        @default("")
+  status       ProjectStatus @default(ACTIVE)
+  tags         String[]      @default([])
+  startDate    DateTime?
+  endDate      DateTime?
+  coverMediaId Int?
+  featured     Boolean       @default(false)
+  published    Boolean       @default(false)
+  sortOrder    Int           @default(0)
+
+  cover        Media?          @relation(fields: [coverMediaId], references: [id], onDelete: SetNull)
+  images       ProjectImage[]
+  members      ProjectMember[]
+  publications Publication[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, sortOrder])
+}
+
+model ProjectImage {
+  id        Int    @id @default(autoincrement())
+  projectId Int
+  mediaId   Int
+  caption   String @default("")
+  sortOrder Int    @default(0)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  media   Media   @relation(fields: [mediaId], references: [id], onDelete: Restrict)
+
+  @@index([projectId])
+}
+
+model Member {
+  id           Int            @id @default(autoincrement())
+  name         String
+  title        String         @default("")
+  bio          String         @default("")
+  email        String?
+  links        Json           @default("{}")
+  photoMediaId Int?
+  category     MemberCategory @default(STAFF)
+  sortOrder    Int            @default(0)
+  published    Boolean        @default(true)
+
+  photo    Media?          @relation(fields: [photoMediaId], references: [id], onDelete: SetNull)
+  projects ProjectMember[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProjectMember {
+  projectId Int
+  memberId  Int
+  role      String @default("")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  member  Member  @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, memberId])
+}
+
+model Publication {
+  id         Int     @id @default(autoincrement())
+  title      String
+  authors    String
+  venue      String  @default("")
+  year       Int
+  url        String?
+  pdfMediaId Int?
+  projectId  Int?
+  published  Boolean @default(true)
+
+  pdf     Media?   @relation(fields: [pdfMediaId], references: [id], onDelete: SetNull)
+  project Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([year])
+}
+
+model NewsPost {
+  id           Int      @id @default(autoincrement())
+  slug         String   @unique
+  title        String
+  body         String   @default("")
+  date         DateTime @default(now())
+  coverMediaId Int?
+  published    Boolean  @default(false)
+
+  cover Media? @relation(fields: [coverMediaId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, date])
 }

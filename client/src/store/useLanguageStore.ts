@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import i18n from "@/i18n";
 
-type Language = "en" | "he" | "ru" | "ar";
+export type Language = "en" | "he" | "ru" | "ar";
 
 const rtlLanguages: Language[] = ["he", "ar"];
 

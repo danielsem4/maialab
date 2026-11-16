@@ -4,12 +4,16 @@ import { AppSidebar } from "@/components/ui/AppSidebar";
 import { SiteHeader } from "@/components/ui/SiteHeader";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { useNavItems } from "@/hooks/common/useNavItems";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useSessionUser } from "@/hooks/common/useSessionUser";
 import { useAuthStore } from "@/store/useAuthStore";
 
 export default function ProtectedLayout() {
   const userId = useAuthStore((s) => s.userId);
-  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+  const isMobile = useIsMobile();
+  const [sidebarOpen, setSidebarOpen] = React.useState(!isMobile);
   const menuItems = useNavItems();
+  useSessionUser(Boolean(userId));
 
   if (!userId) return <Navigate to="/login" replace />;
 
@@ -29,12 +33,14 @@ export default function ProtectedLayout() {
       <AppSidebar variant="inset" open={sidebarOpen} menuItems={menuItems} />
       <SidebarInset
         className={`flex-1 h-svh overflow-hidden transition-all duration-300 ${
-          sidebarOpen ? "ms-72" : "ms-0"
+          sidebarOpen && !isMobile ? "ms-72" : "ms-0"
         }`}
       >
         <SiteHeader onToggleSidebar={handleToggleSidebar} />
         <div className="flex-1 min-h-0 bg-background overflow-auto transition-all duration-300">
-          <Outlet />
+          <div className="mx-auto max-w-6xl p-4 sm:p-6">
+            <Outlet />
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>

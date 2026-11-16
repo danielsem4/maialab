@@ -58,7 +58,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
           <NavLink
             key={item.url}
             to={item.url}
-            end
+            end={item.url === "/admin"}
             className={({ isActive }) =>
               `flex items-center gap-2 p-2 rounded transition text-start w-full ${
                 isActive ? "bg-primary/30 font-semibold" : "hover:bg-primary/20"
