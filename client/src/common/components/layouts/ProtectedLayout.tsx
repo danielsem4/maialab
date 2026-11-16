@@ -1,0 +1,42 @@
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { AppSidebar } from "@/components/ui/AppSidebar";
+import { SiteHeader } from "@/components/ui/SiteHeader";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { useNavItems } from "@/hooks/common/useNavItems";
+import { useAuthStore } from "@/store/useAuthStore";
+
+export default function ProtectedLayout() {
+  const userId = useAuthStore((s) => s.userId);
+  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+  const menuItems = useNavItems();
+
+  if (!userId) return <Navigate to="/login" replace />;
+
+  const handleToggleSidebar = () => {
+    setSidebarOpen((p) => !p);
+  };
+
+  return (
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      <AppSidebar variant="inset" open={sidebarOpen} menuItems={menuItems} />
+      <SidebarInset
+        className={`flex-1 h-svh overflow-hidden transition-all duration-300 ${
+          sidebarOpen ? "ms-72" : "ms-0"
+        }`}
+      >
+        <SiteHeader onToggleSidebar={handleToggleSidebar} />
+        <div className="flex-1 min-h-0 bg-background overflow-auto transition-all duration-300">
+          <Outlet />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}

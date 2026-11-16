@@ -1,0 +1,212 @@
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+import { AppError } from '../../shared/errors/AppError';
+import { sendOtpEmail } from '../../shared/utils/email';
+import type { IAuthRepository } from './auth.repository';
+import type { IOtpRepository } from './otp.repository';
+import type { LoginDto, UpdateProfileDto, ForgotPasswordDto, ResetPasswordDto } from './auth.schema';
+
+interface UserShape {
+  id: string;
+  email: string;
+  name: string;
+  phone: string | null;
+  role: string;
+}
+
+interface LoginOtpResult {
+  requiresOtp: true;
+  otpToken: string;
+  email: string;
+}
+
+interface ForgotPasswordResult {
+  otpToken: string;
+  email: string;
+}
+
+interface VerifyOtpResult {
+  token: string;
+  user: UserShape;
+}
+
+function maskEmail(email: string): string {
+  const [local, domain] = email.split('@');
+  if (!local || !domain) return email;
+  const visible = local.slice(0, Math.min(2, local.length));
+  return `${visible}***@${domain}`;
+}
+
+function getJwtSecret(): string {
+  const secret = process.env['JWT_SECRET'];
+  if (!secret) throw new Error('JWT_SECRET is not configured');
+  return secret;
+}
+
+export class AuthService {
+  constructor(
+    private readonly repository: IAuthRepository,
+    private readonly otpRepository: IOtpRepository,
+  ) {}
+
+  async login(dto: LoginDto): Promise<LoginOtpResult> {
+    const user = await this.repository.findByEmail(dto.email);
+    if (!user || !user.isActive) {
+      throw new AppError('Invalid email or password', 401);
+    }
+
+    const isValid = await bcrypt.compare(dto.password, user.hashPassword);
+    if (!isValid) {
+      throw new AppError('Invalid email or password', 401);
+    }
+
+    // Invalidate any previous unused OTPs
+    await this.otpRepository.invalidateAllForUser(user.id);
+
+    // Generate 6-digit OTP
+    const code = crypto.randomInt(100000, 1000000).toString();
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+
+    // Generate a random lookup token (no JWT until OTP is verified)
+    const otpToken = crypto.randomBytes(32).toString('hex');
+
+    await this.otpRepository.create(user.id, code, otpToken, expiresAt);
+
+    // Send OTP via email
+    await sendOtpEmail(user.email, code);
+
+    return {
+      requiresOtp: true,
+      otpToken,
+      email: maskEmail(user.email),
+    };
+  }
+
+  async verifyOtp(otpToken: string, code: string): Promise<VerifyOtpResult> {
+    const otp = await this.otpRepository.findByToken(otpToken, code);
+    if (!otp) {
+      throw new AppError('Invalid or expired OTP code', 401);
+    }
+
+    await this.otpRepository.markUsed(otp.id);
+
+    // Fetch user for response
+    const user = await this.repository.findById(otp.userId);
+    if (!user || !user.isActive) {
+      throw new AppError('Authentication required', 401);
+    }
+
+    // Issue the real auth JWT
+    const secret = getJwtSecret();
+    const token = jwt.sign(
+      { userId: user.id, role: user.role },
+      secret,
+      { expiresIn: '8h' },
+    );
+
+    return {
+      token,
+      user: {
+        id: String(user.id),
+        email: user.email,
+        name: user.name ?? '',
+        phone: user.phone ?? null,
+        role: user.role,
+      },
+    };
+  }
+
+  async getMe(userId: number): Promise<UserShape> {
+    const user = await this.repository.findById(userId);
+    if (!user || !user.isActive) {
+      throw new AppError('Authentication required', 401);
+    }
+
+    return {
+      id: String(user.id),
+      email: user.email,
+      name: user.name ?? '',
+      phone: user.phone ?? null,
+      role: user.role,
+    };
+  }
+
+  async updateProfile(userId: number, dto: UpdateProfileDto): Promise<UserShape> {
+    const user = await this.repository.findById(userId);
+    if (!user || !user.isActive) {
+      throw new AppError('Authentication required', 401);
+    }
+
+    // If email is changing, check uniqueness
+    if (dto.email && dto.email.toLowerCase() !== user.email.toLowerCase()) {
+      const existing = await this.repository.findByEmail(dto.email);
+      if (existing && existing.isActive) {
+        throw new AppError('Email is already in use', 409);
+      }
+    }
+
+    // If changing password, verify current password
+    if (dto.newPassword) {
+      if (!dto.currentPassword) {
+        throw new AppError('Current password is required', 400);
+      }
+      const isValid = await bcrypt.compare(dto.currentPassword, user.hashPassword);
+      if (!isValid) {
+        throw new AppError('Current password is incorrect', 401);
+      }
+    }
+
+    const updateData: Record<string, string> = {};
+    if (dto.name !== undefined) updateData['name'] = dto.name;
+    if (dto.email !== undefined) updateData['email'] = dto.email;
+    if (dto.phone !== undefined) updateData['phone'] = dto.phone;
+    if (dto.newPassword) {
+      updateData['hashPassword'] = await bcrypt.hash(dto.newPassword, 10);
+    }
+
+    const updated = await this.repository.updateProfile(userId, updateData);
+
+    return {
+      id: String(updated.id),
+      email: updated.email,
+      name: updated.name ?? '',
+      phone: updated.phone ?? null,
+      role: updated.role,
+    };
+  }
+
+  async forgotPassword(dto: ForgotPasswordDto): Promise<ForgotPasswordResult | null> {
+    const user = await this.repository.findByEmail(dto.email);
+    if (!user || !user.isActive) {
+      // Don't reveal whether the email exists
+      return null;
+    }
+
+    await this.otpRepository.invalidateAllForUser(user.id);
+
+    const code = crypto.randomInt(100000, 1000000).toString();
+    const expiresAt = new Date(Date.now() + 5 * 60 * 1000);
+    const otpToken = crypto.randomBytes(32).toString('hex');
+
+    await this.otpRepository.create(user.id, code, otpToken, expiresAt);
+    await sendOtpEmail(user.email, code);
+
+    return {
+      otpToken,
+      email: maskEmail(user.email),
+    };
+  }
+
+  async resetPassword(dto: ResetPasswordDto): Promise<void> {
+    const otp = await this.otpRepository.findByToken(dto.otpToken, dto.code);
+    if (!otp) {
+      throw new AppError('Invalid or expired OTP code', 401);
+    }
+
+    await this.otpRepository.markUsed(otp.id);
+
+    const hashPassword = await bcrypt.hash(dto.newPassword, 10);
+    await this.repository.updateProfile(otp.userId, { hashPassword });
+  }
+}
