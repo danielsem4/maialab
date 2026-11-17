@@ -37,7 +37,7 @@ export default function ProtectedLayout() {
         }`}
       >
         <SiteHeader onToggleSidebar={handleToggleSidebar} />
-        <div className="flex-1 min-h-0 bg-background overflow-auto transition-all duration-300">
+        <div className="flex-1 min-h-0 overflow-auto transition-all duration-300">
           <div className="mx-auto max-w-6xl p-4 sm:p-6">
             <Outlet />
           </div>

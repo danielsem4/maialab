@@ -30,7 +30,7 @@ export default function NewsDetailPage() {
               <time dateTime={post.date} className="text-sm text-muted-foreground">
                 {formatFullDate(post.date, i18n.language)}
               </time>
-              <h1 dir="auto" className="mt-3 font-display text-4xl font-bold tracking-tight text-balance sm:text-6xl">
+              <h1 dir="auto" className="mt-3 font-display text-3xl font-bold tracking-tight text-balance sm:text-5xl">
                 {post.title}
               </h1>
             </header>

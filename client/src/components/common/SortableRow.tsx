@@ -20,7 +20,7 @@ export function SortableRow({ id, children }: SortableRowProps) {
       ref={setNodeRef}
       style={style}
       className={cn(
-        "flex items-center gap-3 rounded-lg border bg-card p-3",
+        "flex items-center gap-3 rounded-lg glass p-3",
         isDragging && "relative z-10 shadow-lg ring-2 ring-primary/40",
       )}
     >

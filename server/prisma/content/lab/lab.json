@@ -1,0 +1,43 @@
+{
+  "lab": {
+    "tagline": "Medical AI based Applications",
+    "about": "The MAIA (Medical Artificial Intelligence-based Applications) lab at HIT – Holon Institute of Technology was established in 2020. We build accessible, easy-to-use mobile and tablet applications for patients and clinical teams.\n\nOur apps track patient progress, make communication between patients and therapists easier, and replace outdated pen-and-paper methods with digital tools. Modernizing these processes improves patient care and produces rich data, which we use to build AI-driven decision-support tools for medical staff.",
+    "mission": "- **Connect patients and therapists** remotely, wherever treatment continues.\n- **Give therapists detailed patient data** and let patients see their own progress.\n- **Digitize pen-and-paper cognitive tests** to improve accuracy, consistency and data collection.\n- **Turn collected data into AI decision support** for clinical teams.\n- **Integrate sensors** — built-in device sensors and medical equipment — into everyday care.\n- **Engage students**: projects start with Computer Science and Medical Technologies students working with a lab supervisor, then move to the lab for further development.",
+    "contactEmail": "erankatsav@gmail.com",
+    "hero": { "file": "hero.jpg", "alt": "Illustration of a futuristic medical AI lab with robots and screens" }
+  },
+  "members": [
+    {
+      "name": "Eran Katsav",
+      "title": "MAIA Lab Manager",
+      "email": "erankatsav@gmail.com",
+      "category": "STAFF",
+      "sortOrder": 0,
+      "photo": { "file": "eran-katsav.jpg", "alt": "Eran Katsav" }
+    },
+    {
+      "name": "Dr. Refael (Barak) Barkan",
+      "title": "VP for Innovation, Entrepreneurship and Internationalization at HIT",
+      "email": "refaelb@hit.ac.il",
+      "category": "STAFF",
+      "sortOrder": 1,
+      "photo": { "file": "refael-barkan.jpg", "alt": "Dr. Refael Barkan" }
+    },
+    {
+      "name": "Dr. Hadas Lewy",
+      "title": "Head of Digital Health Ventures",
+      "email": "hadasl@hit.ac.il",
+      "category": "STAFF",
+      "sortOrder": 2,
+      "photo": { "file": "hadas-lewy.png", "alt": "Dr. Hadas Lewy" }
+    },
+    {
+      "name": "Daniel Semerjian",
+      "title": "Kotlin Applications Developer",
+      "email": "semdaniel1@gmail.com",
+      "category": "STAFF",
+      "sortOrder": 3,
+      "photo": { "file": "daniel-semerjian.jpg", "alt": "Daniel Semerjian" }
+    }
+  ]
+}

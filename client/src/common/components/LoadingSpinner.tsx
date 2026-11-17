@@ -15,7 +15,7 @@ export function LoadingSpinner({
   const { t } = useTranslation(); 
 
   const containerClasses = fullScreen
-    ? "fixed inset-0 z-[200] flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm animate-fade-in"
+    ? "fixed inset-0 z-[200] flex flex-col items-center justify-center bg-background/40 backdrop-blur-md animate-fade-in"
     : "flex flex-col items-center justify-center py-20 w-full bg-transparent";
 
   return (

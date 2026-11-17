@@ -1,0 +1,13 @@
+{
+  "slug": "hit-living-lab",
+  "title": "The Living Lab at HIT",
+  "summary": "A real-life home environment for developing and testing smart-home and assistive technologies that support health, independence and quality of life.",
+  "description": "The **Living Lab at HIT** develops and tests **smart-home and assistive technologies** in a real-life setting, to improve health, independence and quality of life.\n\n- **Advanced environment** — IoT devices, sensors and intelligent robots allow seamless data collection, monitoring and natural interaction in everyday settings.\n- **Applied research** — researchers and developers use the lab to evaluate human–technology interaction, test new healthcare and cognitive-support systems, and refine AI-driven home automation.\n- **Research ecosystem** — all experiments and data from the Living Lab feed into HIT's research ecosystem, supporting evidence-based development and multidisciplinary innovation.\n\nProjects tested here include the [TEMI Robot Cognitive Support System](/projects/temi-cognitive-support).",
+  "status": "ACTIVE",
+  "tags": ["smart-home", "IoT", "assistive-technology", "robotics"],
+  "featured": false,
+  "sortOrder": 10,
+  "cover": { "file": "cover.jpg", "alt": "Living Lab apartment with kitchen and dining area" },
+  "images": [],
+  "members": []
+}

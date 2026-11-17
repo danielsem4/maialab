@@ -1,0 +1,27 @@
+{
+  "slug": "digital-cognitive-tests",
+  "title": "Digital Cognitive Test Battery",
+  "summary": "With Beit Rivka, we turn traditional pen-and-paper cognitive tests into tablet tests with automatic scoring: clock drawing, HITBER, memory, orientation and a virtual supermarket.",
+  "description": "Cognitive assessment still relies mostly on paper, pen and a stopwatch. That causes three problems:\n\n- **Inefficiency** — a senior staff member must supervise the whole session.\n- **Lost information** — the test itself (for example the clock drawing) is usually not kept in the medical record; only the score is.\n- **Subjectivity** — manual scoring depends on interpretation, so the same patient may get different scores from different assessors.\n\nIn collaboration with **Beit Rivka**, we are building a digital battery that runs on tablets, stores every result securely, and scores automatically.\n\n## The tests\n\n### Clock Drawing Test (CDT)\nOur first two versions taught us a lot. The first interface was too complex: patients failed on operating the app, not on cognition. The second was oversimplified and moved too far from the original test. The current version follows the original protocol closely:\n1. **Drawing** — the patient draws a clock on the tablet, places the numbers, and sets the hands to 11:10.\n2. **Comprehension** — a ready-made clock is shown, and the patient resets it according to an instruction that requires a calculation.\n\n### HITBER\nA new digital test based on the Mini-Mental, designed for tablets. Classic tasks such as free writing, complex drawing and serial subtraction are replaced with interactive tasks scored by an algorithm. No typing or voice recognition is needed; clear instructions and predefined choices keep it simple for older adults.\n\n### Memory test\nThe test assesses visual-spatial memory under load. Patients first place objects in rooms of their choice. After a short distraction, they recall the locations while new \"distractor\" objects appear. A diary-planning task then adds executive load before a final recall.\n\n### Orientation test\nSometimes a low score reflects unfamiliarity with tablets rather than cognitive decline. This short \"entry gate\" asks for about seven very simple actions (dragging a shape, drawing a line, pressing buttons) to confirm the patient can operate the device before the main tests.\n\n### Supermarket test\nThis test assesses orientation, attention, memory and multitasking in an everyday setting. The patient picks a recipe and collects its ingredients from a moving conveyor. Then they shop for two lists on a budget in a virtual supermarket, dealing with out-of-stock items, last-minute requests and pop-up ads.\n\n## Status\nThe clock and HITBER tests completed **two rounds of clinical trials with more than 100 patients**. The memory and orientation tests completed a trial with **more than 50 patients**. Both included a pilot at Protea in the Village. The tests can be deployed now through [DMT – Proms++](/projects/dmt-proms), and the next phase will take them into the community.\n\n## Vision: one unified battery\nAll results sync securely to a server and a management system with table and graph views. The goal is a single, adaptive battery: it starts with orientation, and real-time scoring routes the patient to the next module, so the whole process feels like one smooth test.",
+  "status": "ACTIVE",
+  "tags": ["cognitive-tests", "tablet", "clinical-trial", "older-adults", "Beit Rivka"],
+  "featured": false,
+  "sortOrder": 1,
+  "cover": { "file": "cover.jpg", "alt": "Clock drawing test on a tablet, with a hand-drawn clock" },
+  "images": [
+    { "file": "clock-set.jpg", "caption": "Clock test: setting the time", "alt": "Clock face with hands to set" },
+    { "file": "clock-hands.jpg", "caption": "Clock test: set the hands to 11:10", "alt": "Clock test instruction screen" },
+    { "file": "hitber-shapes.jpg", "caption": "HITBER: copying a shape by dragging pieces", "alt": "Shape-copy task" },
+    { "file": "hitber-words.jpg", "caption": "HITBER: building a sentence from word cards", "alt": "Word-card sentence task" },
+    { "file": "memory-kitchen.jpg", "caption": "Memory test: placing objects in a room", "alt": "Kitchen scene with objects to place" },
+    { "file": "memory-room.jpg", "caption": "Memory test: recall with distractor objects", "alt": "Bedroom scene recall task" },
+    { "file": "memory-diary.jpg", "caption": "Memory test: diary-planning task", "alt": "Weekly diary scheduling grid" },
+    { "file": "orientation.jpg", "caption": "Orientation: drag the shape into the square", "alt": "Shape dragging task" },
+    { "file": "picture-task.jpg", "caption": "Picture-based question", "alt": "Landscape picture with answer options" },
+    { "file": "supermarket-home.jpg", "caption": "Virtual supermarket: home screen", "alt": "Supermarket app home screen" },
+    { "file": "supermarket-recipe.jpg", "caption": "Supermarket test: picking ingredients for a recipe", "alt": "Recipe ingredient selection" },
+    { "file": "supermarket-shop.jpg", "caption": "Supermarket test: shopping by category", "alt": "Vegetable aisle in the virtual supermarket" },
+    { "file": "supermarket-grid.jpg", "caption": "Shopping on a budget", "alt": "Product grid with quantities" }
+  ],
+  "members": []
+}

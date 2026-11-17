@@ -12,7 +12,7 @@ export function YearGroup({ group }: YearGroupProps) {
     <section aria-labelledby={headingId} className="grid gap-4 border-t pt-8 md:grid-cols-[10rem_1fr] md:gap-10">
       <h2
         id={headingId}
-        className="self-start font-display text-5xl font-bold tracking-tight text-primary tabular-nums md:sticky md:top-24 md:text-6xl"
+        className="self-start font-display text-4xl font-bold tracking-tight text-primary tabular-nums md:sticky md:top-24 md:text-5xl"
       >
         {group.year}
       </h2>

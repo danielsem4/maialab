@@ -19,7 +19,7 @@ export function MediaTile({ media, onSelect }: MediaTileProps) {
     <button
       type="button"
       onClick={handleClick}
-      className="group flex min-w-0 flex-col overflow-hidden rounded-lg border bg-card text-start transition-colors hover:border-primary/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+      className="group flex min-w-0 flex-col overflow-hidden rounded-lg glass text-start transition-colors hover:border-primary/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
     >
       <span className="block aspect-square overflow-hidden bg-muted">
         <MediaPreview media={media} />

@@ -32,7 +32,7 @@ export default function NewsList() {
         isEmpty={list.posts.length === 0}
         empty={t("news.empty")}
       >
-        <div className="rounded-xl border bg-card">
+        <div className="rounded-xl glass">
           <Table>
             <TableHeader>
               <TableRow>

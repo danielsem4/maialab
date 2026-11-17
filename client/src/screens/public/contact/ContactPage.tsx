@@ -4,14 +4,15 @@ import { QueryState } from "@/components/common/QueryState";
 import { SocialLinks } from "@/components/common/SocialLinks";
 import { safeHref } from "@/common/utils/safeHref";
 import { useLabInfo } from "@/hooks/queries/useLabInfoQueries";
+import { usePublishedMembers } from "@/hooks/queries/useMemberQueries";
 import { ContactItem } from "./components/ContactItem";
-
-const LINK_CLASS =
-  "rounded-sm underline decoration-foreground/20 underline-offset-[6px] transition-colors hover:text-primary hover:decoration-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none";
+import { ContactTeamList } from "./components/ContactTeamList";
+import { LINK_CLASS } from "./linkClass";
 
 export default function ContactPage() {
   const { t } = useTranslation();
   const { data: labInfo, isLoading, isError, refetch } = useLabInfo();
+  const { data: members } = usePublishedMembers();
 
   const handleRetry = () => {
     void refetch();
@@ -19,6 +20,7 @@ export default function ContactPage() {
 
   const hasSocial = Object.values(labInfo?.socialLinks ?? {}).some((link) => safeHref(link));
   const mapHref = safeHref(labInfo?.mapUrl);
+  const membersWithEmail = (members ?? []).filter((member) => member.email);
 
   return (
     <>
@@ -31,19 +33,24 @@ export default function ContactPage() {
                 <a
                   href={`mailto:${labInfo.contactEmail}`}
                   dir="ltr"
-                  className={`font-display text-2xl font-semibold tracking-tight break-all sm:text-5xl ${LINK_CLASS}`}
+                  className={`font-display text-lg font-semibold tracking-tight break-all sm:text-xl ${LINK_CLASS}`}
                 >
                   {labInfo.contactEmail}
                 </a>
               </ContactItem>
             )}
+            {membersWithEmail.length > 0 && (
+              <ContactItem label={t("site.teamEmails")}>
+                <ContactTeamList members={membersWithEmail} />
+              </ContactItem>
+            )}
             {labInfo?.address && (
               <ContactItem label={t("site.address")}>
-                <p dir="auto" className="font-display text-2xl leading-snug font-medium whitespace-pre-line sm:text-3xl">
+                <p dir="auto" className="font-display text-lg leading-snug font-medium whitespace-pre-line sm:text-xl">
                   {labInfo.address}
                 </p>
                 {mapHref && (
-                  <a href={mapHref} target="_blank" rel="noreferrer" className={`mt-4 inline-block text-lg text-primary ${LINK_CLASS}`}>
+                  <a href={mapHref} target="_blank" rel="noreferrer" className={`mt-3 inline-block text-base text-primary ${LINK_CLASS}`}>
                     {t("site.openMap")}
                   </a>
                 )}
@@ -51,7 +58,7 @@ export default function ContactPage() {
             )}
             {!labInfo?.address && mapHref && (
               <ContactItem label={t("site.address")}>
-                <a href={mapHref} target="_blank" rel="noreferrer" className={`text-lg text-primary ${LINK_CLASS}`}>
+                <a href={mapHref} target="_blank" rel="noreferrer" className={`text-base text-primary ${LINK_CLASS}`}>
                   {t("site.openMap")}
                 </a>
               </ContactItem>

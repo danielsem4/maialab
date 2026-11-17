@@ -1,0 +1,16 @@
+{
+  "slug": "sensors-module",
+  "title": "Sensors Module",
+  "summary": "A student final project that uses the phone's built-in sensors to detect light, movement, tremor and falls, giving clinicians more insight into the patient.",
+  "description": "The sensors module was developed by students as their final project, as part of the generic platform behind [DMT – Proms++](/projects/dmt-proms).\n\nIt uses the phone's built-in sensors to detect factors such as **light levels, movement and shaking**. For example, it can notify the patient about a possible Parkinson's tremor or a fall. The data is uploaded to the clinic, giving the care team insights that help them support the patient better.",
+  "status": "COMPLETED",
+  "tags": ["sensors", "students", "Parkinson's", "mobile"],
+  "featured": false,
+  "sortOrder": 5,
+  "cover": { "file": "cover.png", "alt": "App screen showing a possible Parkinson's tremor detected notice" },
+  "images": [
+    { "file": "fall.jpg", "caption": "Fall detection notification", "alt": "Phone home screen with a fall-detected notification" },
+    { "file": "upload.jpg", "caption": "Sensor data uploaded to the clinic", "alt": "Phone home screen with a data-uploaded notification" }
+  ],
+  "members": []
+}

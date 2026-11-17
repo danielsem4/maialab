@@ -1,0 +1,13 @@
+{
+  "slug": "temi-cognitive-support",
+  "title": "TEMI Robot Cognitive Support System",
+  "summary": "A Computer Science student project that combines the Temi robot, AI image recognition (YOLO) and smart-home sensors to assess cognitive abilities through interactive scenarios.",
+  "description": "The **TEMI Robot-Based Cognitive Support System** combines the **Temi** robot, AI image recognition (**YOLO**) and smart-home sensors to assess patients' cognitive abilities through interactive scenarios.\n\nThe evaluation is **automated, adaptive and engaging**, and it reduces the need for close human supervision. Real-time analysis and dynamic scenario management give patients personalized feedback and performance scores.\n\nThe project combines robotics, AI and smart-home technology for cognitive healthcare. It was developed and tested in the [HIT Living Lab](/projects/hit-living-lab).",
+  "status": "COMPLETED",
+  "tags": ["robotics", "AI", "computer-vision", "smart-home", "students"],
+  "featured": false,
+  "sortOrder": 7,
+  "cover": { "file": "cover.jpg", "alt": "Person walking beside the Temi robot in the Living Lab" },
+  "images": [],
+  "members": []
+}

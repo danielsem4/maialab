@@ -40,7 +40,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({
   return (
     <aside
       className={`fixed top-0 start-0 h-screen z-50 flex flex-col p-4 gap-4 transition-transform duration-300 ${
-        variant === "inset" ? "w-72 bg-muted" : "w-64 bg-background"
+        variant === "inset" ? "w-72 glass border-y-0 border-s-0 rounded-none" : "w-64 glass border-y-0 border-s-0 rounded-none"
       } ${open ? "translate-x-0" : "ltr:-translate-x-full rtl:translate-x-full"}`}
     >
       <div className="flex flex-col gap-1 pb-2 border-b border-border/50">

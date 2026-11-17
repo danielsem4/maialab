@@ -32,7 +32,7 @@ export default function PublicationsList() {
         isEmpty={list.publications.length === 0}
         empty={t("publications.empty")}
       >
-        <div className="rounded-xl border bg-card">
+        <div className="rounded-xl glass">
           <Table>
             <TableHeader>
               <TableRow>

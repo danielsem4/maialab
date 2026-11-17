@@ -1,0 +1,16 @@
+{
+  "slug": "coffe-phone-test",
+  "title": "COFFE Phone-Call Test",
+  "summary": "With Herzfeld Medical Center: a simulated phone that tests a patient's ability to communicate and make decisions on their own in daily life.",
+  "description": "As part of **COFFE**, a cognitive test for management skills and independence, we developed a module that simulates a smartphone in collaboration with **Herzfeld Medical Center**.\n\nThe test assesses how well a patient handles independent communication and decision-making in everyday life, in two scenarios:\n\n1. **Find and call a contact** — open the contacts app or the dialer, find the requested person, and call them.\n2. **Dial a number** — from a list of numbers (family doctor, dentist, clinics and more), dial the requested one using the keypad.\n\nThe app is entering **Phase 1 clinical trials**, which will evaluate its effectiveness and reliability under controlled conditions. It runs as a module of [DMT – Proms++](/projects/dmt-proms).",
+  "status": "ACTIVE",
+  "tags": ["cognitive-tests", "daily-function", "clinical-trial", "Herzfeld"],
+  "featured": false,
+  "sortOrder": 2,
+  "cover": { "file": "cover.jpg", "alt": "Simulated phone home screen with app icons on a tablet" },
+  "images": [
+    { "file": "contacts.jpg", "caption": "Scenario 1: finding a contact", "alt": "Simulated contacts list" },
+    { "file": "dialer.jpg", "caption": "Scenario 2: dialing a requested number", "alt": "Simulated dialer with a list of phone numbers" }
+  ],
+  "members": []
+}

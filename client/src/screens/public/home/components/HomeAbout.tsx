@@ -16,7 +16,7 @@ export function HomeAbout({ labInfo }: HomeAboutProps) {
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-20">
         {labInfo.about && (
           <div className="max-w-prose">
-            <h2 id="home-about" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 id="home-about" className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
               {t("site.about")}
             </h2>
             <MarkdownView content={labInfo.about} className="mt-4 text-lg" />

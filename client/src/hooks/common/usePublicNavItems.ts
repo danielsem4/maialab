@@ -11,8 +11,6 @@ export function usePublicNavItems(): PublicNavItem[] {
   return [
     { title: t("nav.projects"), url: "/projects" },
     { title: t("nav.team"), url: "/team" },
-    { title: t("nav.publications"), url: "/publications" },
-    { title: t("nav.news"), url: "/news" },
     { title: t("nav.contact"), url: "/contact" },
   ];
 }
