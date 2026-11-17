@@ -5,6 +5,8 @@ import { MarkdownView } from "@/components/common/MarkdownView";
 import { PublicNotFound } from "@/components/common/PublicNotFound";
 import { QueryState } from "@/components/common/QueryState";
 import { usePublishedProject } from "@/hooks/queries/useProjectQueries";
+import { getDemo } from "./demos/demoRegistry";
+import { ProjectDemoCta } from "./components/ProjectDemoCta";
 import { ProjectGallery } from "./components/ProjectGallery";
 import { ProjectPublications } from "./components/ProjectPublications";
 import { ProjectSidebar } from "./components/ProjectSidebar";
@@ -13,6 +15,7 @@ export default function ProjectDetailPage() {
   const { t } = useTranslation();
   const { slug = "" } = useParams();
   const { data: project, isLoading, isError } = usePublishedProject(slug);
+  const demo = getDemo(slug);
 
   if (isError) return <PublicNotFound backTo="/projects" backLabel={t("projects.backToProjects")} />;
 
@@ -29,6 +32,7 @@ export default function ProjectDetailPage() {
               <h1 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-5xl">{project.title}</h1>
               {project.summary && <p className="mt-5 text-xl text-muted-foreground">{project.summary}</p>}
             </header>
+            {demo && <ProjectDemoCta slug={slug} device={demo.device} />}
             {project.cover && (
               <div className="mt-10 overflow-hidden rounded-xl glass">
                 <div className="flex justify-center bg-primary/10 p-4 sm:p-6">

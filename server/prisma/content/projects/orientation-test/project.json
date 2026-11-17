@@ -1,0 +1,26 @@
+{
+  "slug": "orientation-test",
+  "title": "Orientation Test",
+  "summary": "A short entry gate that checks the patient can operate a tablet before the main cognitive tests.",
+  "description": "Sometimes a low score reflects unfamiliarity with tablets rather than cognitive decline.\n\nThis short \"entry gate\" asks for about seven very simple actions — dragging a shape, drawing a line, pressing buttons — to confirm the patient can operate the device before the main tests.\n\n## Status\nThe orientation test completed a trial with **more than 50 patients**, including a pilot at Protea in the Village. In the unified [Digital Cognitive Test Battery](/projects/digital-cognitive-tests) it is the first module, routing the patient to the next tests.",
+  "status": "ACTIVE",
+  "tags": [
+    "cognitive-tests",
+    "tablet",
+    "Beit Rivka"
+  ],
+  "featured": false,
+  "sortOrder": 1,
+  "cover": {
+    "file": "orientation.jpg",
+    "alt": "Shape dragging task"
+  },
+  "images": [
+    {
+      "file": "orientation.jpg",
+      "caption": "Drag the shape into the square",
+      "alt": "Shape dragging task"
+    }
+  ],
+  "members": []
+}

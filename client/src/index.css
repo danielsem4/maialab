@@ -208,9 +208,54 @@ body {
 }
 
 
+/* DMT Proms++ look inside the demo device screen: cyan accents, opaque cards; dark mode uses the app's navy. */
+.demo-theme {
+  --primary: oklch(0.655 0.108 221);
+  --primary-foreground: oklch(1 0 0);
+  --ring: oklch(0.655 0.108 221);
+  --card: oklch(1 0 0);
+  --popover: oklch(1 0 0);
+  --muted: oklch(0.93 0.008 240);
+  --border: oklch(0.88 0.01 240);
+  --sidebar-primary: oklch(0.655 0.108 221);
+}
+.dark .demo-theme {
+  --background: oklch(0.17 0.015 230);
+  --foreground: oklch(0.97 0.005 240);
+  --card: oklch(0.255 0.022 236);
+  --card-foreground: oklch(0.97 0.005 240);
+  --popover: oklch(0.255 0.022 236);
+  --popover-foreground: oklch(0.97 0.005 240);
+  --muted: oklch(0.34 0.025 236);
+  --muted-foreground: oklch(0.78 0.015 240);
+  --border: oklch(0.34 0.025 236);
+  --input: oklch(0.34 0.025 236);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Supermarket demo conveyor belt: the strip holds its items twice, so shifting by half loops seamlessly. */
+@keyframes demo-conveyor {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.demo-conveyor {
+  animation: demo-conveyor var(--conveyor-duration, 16s) linear infinite;
+}
+
+/* The moving belt is the task itself, so reduced motion slows it (via the duration the demo sets) instead of stopping it. */
+@media (prefers-reduced-motion: reduce) {
+  .demo-conveyor {
+    animation-duration: var(--conveyor-duration, 30s) !important;
   }
 }

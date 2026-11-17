@@ -1,0 +1,37 @@
+{
+  "slug": "hitber",
+  "title": "HITBER",
+  "summary": "A new tablet test based on the Mini-Mental, with interactive tasks that are scored by an algorithm.",
+  "description": "HITBER is a new digital test based on the Mini-Mental, designed for tablets.\n\nClassic tasks such as free writing, complex drawing and serial subtraction are replaced with interactive tasks scored by an algorithm: copying a shape by dragging its pieces, building a sentence from word cards, and answering picture-based questions.\n\nNo typing or voice recognition is needed; clear instructions and predefined choices keep it simple for older adults.\n\n## Status\nHITBER completed **two rounds of clinical trials with more than 100 patients**, including a pilot at Protea in the Village. It is part of the [Digital Cognitive Test Battery](/projects/digital-cognitive-tests).",
+  "status": "ACTIVE",
+  "tags": [
+    "cognitive-tests",
+    "tablet",
+    "Beit Rivka",
+    "clinical-trial"
+  ],
+  "featured": false,
+  "sortOrder": 1,
+  "cover": {
+    "file": "hitber-shapes.jpg",
+    "alt": "HITBER shape-copy task on a tablet"
+  },
+  "images": [
+    {
+      "file": "hitber-shapes.jpg",
+      "caption": "Copying a shape by dragging pieces",
+      "alt": "Shape-copy task"
+    },
+    {
+      "file": "hitber-words.jpg",
+      "caption": "Building a sentence from word cards",
+      "alt": "Word-card sentence task"
+    },
+    {
+      "file": "picture-task.jpg",
+      "caption": "Picture-based question",
+      "alt": "Landscape picture with answer options"
+    }
+  ],
+  "members": []
+}
