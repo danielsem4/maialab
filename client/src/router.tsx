@@ -5,6 +5,7 @@ import NotFound from "@/screens/not-found/NotFound";
 import HomePage from "@/screens/public/home/HomePage";
 import ProjectsPage from "@/screens/public/projects/ProjectsPage";
 import ProjectDetailPage from "@/screens/public/projects/ProjectDetailPage";
+import ProjectDemoPage from "@/screens/public/projects/ProjectDemoPage";
 import TeamPage from "@/screens/public/team/TeamPage";
 import ContactPage from "@/screens/public/contact/ContactPage";
 
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/projects", element: <ProjectsPage /> },
       { path: "/projects/:slug", element: <ProjectDetailPage /> },
+      { path: "/projects/:slug/demo", element: <ProjectDemoPage /> },
       { path: "/team", element: <TeamPage /> },
       { path: "/contact", element: <ContactPage /> },
     ],

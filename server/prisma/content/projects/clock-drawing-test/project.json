@@ -1,0 +1,32 @@
+{
+  "slug": "clock-drawing-test",
+  "title": "Clock Drawing Test (CDT)",
+  "summary": "A tablet version of the classic clock drawing test that keeps the original protocol and scores automatically.",
+  "description": "The clock drawing test is one of the most common cognitive screening tools, but on paper the drawing itself rarely reaches the medical record, and scoring depends on the assessor.\n\nOur first two versions taught us a lot. The first interface was too complex: patients failed on operating the app, not on cognition. The second was oversimplified and moved too far from the original test. The current version follows the original protocol closely:\n\n1. **Drawing** — the patient draws a clock on the tablet, places the numbers, and sets the hands to 11:10.\n2. **Comprehension** — a ready-made clock is shown, and the patient resets it according to an instruction that requires a calculation.\n\n## Status\nThe clock test completed **two rounds of clinical trials with more than 100 patients**, including a pilot at Protea in the Village. It is part of the [Digital Cognitive Test Battery](/projects/digital-cognitive-tests) and can be deployed through [DMT – Proms++](/projects/dmt-proms).",
+  "status": "ACTIVE",
+  "tags": [
+    "cognitive-tests",
+    "tablet",
+    "Beit Rivka",
+    "clinical-trial"
+  ],
+  "featured": false,
+  "sortOrder": 1,
+  "cover": {
+    "file": "cover.jpg",
+    "alt": "Clock drawing test on a tablet, with a hand-drawn clock"
+  },
+  "images": [
+    {
+      "file": "clock-set.jpg",
+      "caption": "Setting the time",
+      "alt": "Clock face with hands to set"
+    },
+    {
+      "file": "clock-hands.jpg",
+      "caption": "Set the hands to 11:10",
+      "alt": "Clock test instruction screen"
+    }
+  ],
+  "members": []
+}

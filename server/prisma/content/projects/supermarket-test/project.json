@@ -1,0 +1,42 @@
+{
+  "slug": "supermarket-test",
+  "title": "Supermarket Test",
+  "summary": "A virtual supermarket that assesses orientation, attention, memory and multitasking in an everyday setting.",
+  "description": "This test assesses orientation, attention, memory and multitasking in an everyday setting.\n\n1. **Recipe** — the patient picks a recipe and collects its ingredients from a moving conveyor.\n2. **Shopping** — they shop for two lists on a budget in a virtual supermarket, dealing with out-of-stock items, last-minute requests and pop-up ads.\n\nIt is part of the [Digital Cognitive Test Battery](/projects/digital-cognitive-tests).",
+  "status": "ACTIVE",
+  "tags": [
+    "cognitive-tests",
+    "tablet",
+    "Beit Rivka",
+    "multitasking"
+  ],
+  "featured": false,
+  "sortOrder": 1,
+  "cover": {
+    "file": "supermarket-home.jpg",
+    "alt": "Supermarket app home screen"
+  },
+  "images": [
+    {
+      "file": "supermarket-home.jpg",
+      "caption": "Home screen",
+      "alt": "Supermarket app home screen"
+    },
+    {
+      "file": "supermarket-recipe.jpg",
+      "caption": "Picking ingredients for a recipe",
+      "alt": "Recipe ingredient selection"
+    },
+    {
+      "file": "supermarket-shop.jpg",
+      "caption": "Shopping by category",
+      "alt": "Vegetable aisle in the virtual supermarket"
+    },
+    {
+      "file": "supermarket-grid.jpg",
+      "caption": "Shopping on a budget",
+      "alt": "Product grid with quantities"
+    }
+  ],
+  "members": []
+}

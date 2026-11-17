@@ -1,0 +1,37 @@
+{
+  "slug": "memory-test",
+  "title": "Memory Test",
+  "summary": "A tablet test of visual-spatial memory under load: place objects in rooms, then recall them among distractors.",
+  "description": "The memory test assesses visual-spatial memory under load.\n\n1. **Placement** — the patient places objects in rooms of their choice.\n2. **Recall** — after a short distraction, they recall the locations while new \"distractor\" objects appear.\n3. **Executive load** — a diary-planning task adds load before a final recall.\n\n## Status\nThe memory test completed a trial with **more than 50 patients**, including a pilot at Protea in the Village. It is part of the [Digital Cognitive Test Battery](/projects/digital-cognitive-tests).",
+  "status": "ACTIVE",
+  "tags": [
+    "cognitive-tests",
+    "tablet",
+    "Beit Rivka",
+    "memory"
+  ],
+  "featured": false,
+  "sortOrder": 1,
+  "cover": {
+    "file": "memory-kitchen.jpg",
+    "alt": "Kitchen scene with objects to place"
+  },
+  "images": [
+    {
+      "file": "memory-kitchen.jpg",
+      "caption": "Placing objects in a room",
+      "alt": "Kitchen scene with objects to place"
+    },
+    {
+      "file": "memory-room.jpg",
+      "caption": "Recall with distractor objects",
+      "alt": "Bedroom scene recall task"
+    },
+    {
+      "file": "memory-diary.jpg",
+      "caption": "Diary-planning task",
+      "alt": "Weekly diary scheduling grid"
+    }
+  ],
+  "members": []
+}
