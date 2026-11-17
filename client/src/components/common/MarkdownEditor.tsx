@@ -28,7 +28,7 @@ export function MarkdownEditor({ id, value, onChange, rows = 12 }: MarkdownEdito
         <p className="text-xs text-muted-foreground">{t("markdown.hint")}</p>
       </TabsContent>
       <TabsContent value="preview">
-        <div className="min-h-40 rounded-md border bg-card px-4 py-2">
+        <div className="min-h-40 rounded-md glass px-4 py-2">
           {value.trim() ? (
             <MarkdownView content={value} />
           ) : (

@@ -1,0 +1,16 @@
+{
+  "slug": "sheba-mental-care-app",
+  "title": "Sheba Mental Care App",
+  "summary": "A student app built with Sheba Medical Center that helps patients express their feelings before psychiatric treatment.",
+  "description": "In collaboration with **Sheba Medical Center**, students developed an app that helps patients convey their feelings and emotions before psychiatric treatment.\n\nThe app includes:\n\n- **A body character** that patients use to show where they feel pain or discomfort.\n- **Graphical questionnaires** with matching images, so patients can rate feelings visually.\n- **Upcoming meetings** with their care team.\n\nThe answers are shown to the doctor **before the meeting**, so the doctor has a better picture of how the patient is doing.",
+  "status": "COMPLETED",
+  "tags": ["mental-health", "students", "mobile", "Sheba"],
+  "featured": false,
+  "sortOrder": 6,
+  "cover": { "file": "cover.jpg", "alt": "Feelings questionnaire with photos and a rating slider" },
+  "images": [
+    { "file": "body.jpg", "caption": "Marking where it hurts on a body character", "alt": "Body character with a marked pain area" },
+    { "file": "meetings.jpg", "caption": "Upcoming meetings", "alt": "List of upcoming meetings" }
+  ],
+  "members": []
+}

@@ -11,7 +11,7 @@ interface HomeSectionHeadingProps {
 export function HomeSectionHeading({ id, title, linkTo, linkLabel }: HomeSectionHeadingProps) {
   return (
     <div className="mb-8 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-      <h2 id={id} className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+      <h2 id={id} className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
         {title}
       </h2>
       {linkTo && linkLabel && (

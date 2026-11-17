@@ -1,9 +1,7 @@
 import {
-  FileText,
   Image,
   Info,
   LayoutDashboard,
-  Newspaper,
   Presentation,
   ShieldCheck,
   Users,
@@ -17,8 +15,6 @@ export const ADMIN_NAV = [
   { key: "nav.dashboard", url: "/admin", icon: LayoutDashboard },
   { key: "nav.projects", url: "/admin/projects", icon: FlaskConical },
   { key: "nav.team", url: "/admin/members", icon: Users },
-  { key: "nav.publications", url: "/admin/publications", icon: FileText },
-  { key: "nav.news", url: "/admin/news", icon: Newspaper },
   { key: "nav.media", url: "/admin/media", icon: Image },
   { key: "nav.labInfo", url: "/admin/lab-info", icon: Info },
   { key: "nav.presentations", url: "/admin/presentations", icon: Presentation },

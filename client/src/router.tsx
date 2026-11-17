@@ -6,9 +6,6 @@ import HomePage from "@/screens/public/home/HomePage";
 import ProjectsPage from "@/screens/public/projects/ProjectsPage";
 import ProjectDetailPage from "@/screens/public/projects/ProjectDetailPage";
 import TeamPage from "@/screens/public/team/TeamPage";
-import PublicationsPage from "@/screens/public/publications/PublicationsPage";
-import NewsPage from "@/screens/public/news/NewsPage";
-import NewsDetailPage from "@/screens/public/news/NewsDetailPage";
 import ContactPage from "@/screens/public/contact/ContactPage";
 
 /** Login and admin screens are code-split so public visitors never download the editor bundle. */
@@ -24,12 +21,6 @@ const adminRoutes: RouteObject[] = [
   { path: "members", ...lazyPage(() => import("@/screens/admin/members/MembersList")) },
   { path: "members/new", ...lazyPage(() => import("@/screens/admin/members/MemberEditor")) },
   { path: "members/:id", ...lazyPage(() => import("@/screens/admin/members/MemberEditor")) },
-  { path: "publications", ...lazyPage(() => import("@/screens/admin/publications/PublicationsList")) },
-  { path: "publications/new", ...lazyPage(() => import("@/screens/admin/publications/PublicationEditor")) },
-  { path: "publications/:id", ...lazyPage(() => import("@/screens/admin/publications/PublicationEditor")) },
-  { path: "news", ...lazyPage(() => import("@/screens/admin/news/NewsList")) },
-  { path: "news/new", ...lazyPage(() => import("@/screens/admin/news/NewsEditor")) },
-  { path: "news/:id", ...lazyPage(() => import("@/screens/admin/news/NewsEditor")) },
   { path: "media", ...lazyPage(() => import("@/screens/admin/media/MediaLibrary")) },
   { path: "lab-info", ...lazyPage(() => import("@/screens/admin/lab-info/LabInfoEditor")) },
   { path: "presentations", ...lazyPage(() => import("@/screens/admin/presentations/PresentationsBuilder")) },
@@ -44,9 +35,6 @@ export const router = createBrowserRouter([
       { path: "/projects", element: <ProjectsPage /> },
       { path: "/projects/:slug", element: <ProjectDetailPage /> },
       { path: "/team", element: <TeamPage /> },
-      { path: "/publications", element: <PublicationsPage /> },
-      { path: "/news", element: <NewsPage /> },
-      { path: "/news/:slug", element: <NewsDetailPage /> },
       { path: "/contact", element: <ContactPage /> },
     ],
   },

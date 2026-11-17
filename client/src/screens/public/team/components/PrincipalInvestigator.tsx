@@ -13,7 +13,7 @@ export function PrincipalInvestigator({ member }: PrincipalInvestigatorProps) {
     <article className="grid gap-8 md:grid-cols-[minmax(0,20rem)_1fr] md:gap-12">
       <MemberPhoto member={member} className="aspect-[4/5] max-w-xs md:max-w-none" initialsClassName="text-7xl" />
       <div className="min-w-0">
-        <h3 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl" dir="auto">
+        <h3 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl" dir="auto">
           {member.name}
         </h3>
         {member.title && (

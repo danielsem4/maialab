@@ -15,11 +15,11 @@ export const SiteHeader = ({ onToggleSidebar }: SiteHeaderProps) => {
   const pageTitle = usePageTitle();
 
   return (
-    <header className="flex h-12 w-full items-center justify-between gap-2 border-b border-border bg-card px-4">
+    <header className="flex h-12 w-full items-center justify-between gap-2 border-b glass-subtle px-4">
       <div className="flex min-w-0 items-center gap-2">
         <button
           onClick={onToggleSidebar}
-          className="rounded-md p-2 transition hover:bg-muted"
+          className="rounded-md p-2 transition hover:bg-white/40 dark:hover:bg-white/10"
           aria-label={t("common.toggleSidebar")}
         >
           <Menu size={20} />

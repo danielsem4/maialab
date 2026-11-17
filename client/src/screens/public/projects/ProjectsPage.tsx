@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { ProjectGroups } from "@/components/common/ProjectGroups";
 import { ProjectIndex } from "@/components/common/ProjectIndex";
 import { PublicPageHeader } from "@/components/common/PublicPageHeader";
 import { QueryState } from "@/components/common/QueryState";
@@ -22,7 +23,7 @@ export default function ProjectsPage() {
           isEmpty={filter.isEmpty}
           empty={t("projects.publicEmpty")}
         >
-          <ProjectIndex projects={filter.projects} />
+          {filter.status ? <ProjectIndex projects={filter.projects} /> : <ProjectGroups groups={filter.groups} />}
         </QueryState>
       </section>
     </>

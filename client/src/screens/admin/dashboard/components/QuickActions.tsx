@@ -1,4 +1,4 @@
-import { FileText, Newspaper, Plus, UserPlus } from "lucide-react";
+import { FileText, Plus, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -16,12 +16,6 @@ export function QuickActions() {
           <Link to="/admin/projects/new">
             <Plus className="size-4" />
             {t("projects.newProject")}
-          </Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link to="/admin/news/new">
-            <Newspaper className="size-4" />
-            {t("news.newPost")}
           </Link>
         </Button>
         <Button asChild variant="outline">

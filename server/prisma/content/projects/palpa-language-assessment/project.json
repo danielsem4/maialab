@@ -1,0 +1,16 @@
+{
+  "slug": "palpa-language-assessment",
+  "title": "Digital PALPA Language Assessment",
+  "summary": "A student project with Herzfeld Medical Center that moves PALPA language tests and other assessment tools from binders to the iPad.",
+  "description": "In a student project with **Herzfeld Medical Center**, we developed an app for the clinical team that brings their assessment questionnaires to the iPad and lets them build custom language-diagnosis tests.\n\nClinicians give the tests to patients directly on the iPad. There are no binders or paperwork, and every result is saved digitally.\n\n## Next steps\nThe data collected will be used for advanced analysis and to develop a **decision-support system**. It will help the medical team with diagnosis and with choosing the best test battery for each patient.\n\nThe tests are built with the questionnaire and test builder of [DMT – Proms++](/projects/dmt-proms).",
+  "status": "ACTIVE",
+  "tags": ["language", "speech-therapy", "tablet", "students", "Herzfeld"],
+  "featured": false,
+  "sortOrder": 3,
+  "cover": { "file": "cover.png", "alt": "List of language tests on an iPad" },
+  "images": [
+    { "file": "free-text.png", "caption": "Free-text answer with an on-screen Hebrew keyboard", "alt": "Evaluation question with Hebrew keyboard" },
+    { "file": "choice.png", "caption": "Picture-description task with answer options", "alt": "Evaluation question with choice buttons" }
+  ],
+  "members": []
+}

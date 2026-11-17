@@ -7,7 +7,6 @@ export function createAuthController(service: AuthService) {
   return {
     async login(req: Request, res: Response, next: NextFunction): Promise<void> {
       try {
-        console.log('[auth] login handler called — OTP flow active');
         const result = await service.login(req.body as LoginDto);
         res.clearCookie(AUTH_COOKIE_NAME, AUTH_COOKIE_CLEAR_OPTIONS);
         res.json(result);

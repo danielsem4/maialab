@@ -20,7 +20,7 @@ export function HomeHero({ labInfo, isLoading, needsSetup }: HomeHeroProps) {
           <h1
             id="home-title"
             dir="auto"
-            className="font-display text-[clamp(3.25rem,12vw,10.5rem)] leading-[0.88] font-bold tracking-[-0.045em] text-balance break-words"
+            className="font-display text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] font-bold tracking-[-0.045em] text-balance break-words"
           >
             {labInfo?.name}
           </h1>
@@ -28,7 +28,7 @@ export function HomeHero({ labInfo, isLoading, needsSetup }: HomeHeroProps) {
         {labInfo?.tagline && (
           <div className="mt-8 flex max-w-3xl items-start gap-5 sm:mt-10">
             <span aria-hidden="true" className="mt-4 h-1 w-12 shrink-0 rounded-full bg-highlight" />
-            <p dir="auto" className="text-xl leading-snug text-foreground/80 text-pretty sm:text-3xl">
+            <p dir="auto" className="text-lg leading-snug text-foreground/80 text-pretty sm:text-2xl">
               {labInfo.tagline}
             </p>
           </div>

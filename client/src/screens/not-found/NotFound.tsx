@@ -6,7 +6,7 @@ export default function NotFound() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-svh flex flex-col items-center justify-center gap-4 bg-background">
+    <div className="min-h-svh flex flex-col items-center justify-center gap-4">
       <h1 className="text-4xl font-semibold">404</h1>
       <p className="text-muted-foreground">{t("notFound.description")}</p>
       <Button asChild>

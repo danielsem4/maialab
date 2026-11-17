@@ -10,7 +10,8 @@
     "db:migrate": "npx prisma migrate dev",
     "db:generate": "npx prisma generate",
     "db:studio": "npx prisma studio",
-    "db:seed": "npx prisma db seed"
+    "db:seed": "npx prisma db seed",
+    "db:import-content": "npx ts-node prisma/importContent.ts"
   },
   "keywords": [],
   "author": "",

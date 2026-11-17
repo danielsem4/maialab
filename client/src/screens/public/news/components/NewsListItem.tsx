@@ -24,7 +24,7 @@ export function NewsListItem({ post }: NewsListItemProps) {
           </time>
           <h2
             dir="auto"
-            className="mt-2 font-display text-3xl font-semibold tracking-tight text-balance transition-colors group-hover:text-primary sm:text-4xl"
+            className="mt-2 font-display text-2xl font-semibold tracking-tight text-balance transition-colors group-hover:text-primary sm:text-3xl"
           >
             {post.title}
           </h2>

@@ -1,0 +1,22 @@
+{
+  "slug": "soroka-tens-care",
+  "title": "TENS Care Modules with Soroka",
+  "summary": "New DMT – Proms++ modules, built with Soroka Medical Center, for patients using the TENS Care pain-relief device: progress graphs, adaptive questionnaires and reports.",
+  "description": "We worked with **Soroka Medical Center** to develop new modules that support patients using the **TENS Care** device.\n\n## Features\n\n- **Progress tracking** — interactive graphs that let patients see their progress, such as device use against reported pain.\n- **Dynamic questionnaires** — open and multi-select questions, and adaptive questions that change based on the patient's answers.\n- **Pain mapping** — an interactive human body model (front and back) for locating and rating pain.\n- **Reports** — activity reports and medication-use reports for the clinical team.\n\nThe modules run inside [DMT – Proms++](/projects/dmt-proms).",
+  "status": "ACTIVE",
+  "tags": ["pain", "TENS", "PROMs", "graphs", "Soroka"],
+  "featured": false,
+  "sortOrder": 4,
+  "cover": { "file": "cover.png", "alt": "Bar chart comparing TENS device use with pain levels" },
+  "images": [
+    { "file": "pain-front.jpg", "caption": "Pain map — front", "alt": "Human body model, front view, with pain points" },
+    { "file": "pain-back.jpg", "caption": "Pain map — back", "alt": "Human body model, back view, with pain points" },
+    { "file": "graphs.png", "caption": "Choosing a progress graph", "alt": "Graph selection screen" },
+    { "file": "activity.png", "caption": "Logging an activity", "alt": "Activity logging screen" },
+    { "file": "pain-map-v2.jpg", "caption": "Pain map in the new app design", "alt": "Dark-mode body pain map" },
+    { "file": "pain-scale.jpg", "caption": "Pain rating scale", "alt": "Pain scale slider from 0 to 10" },
+    { "file": "activities-v2.jpg", "caption": "Activities in the new app design", "alt": "Dark-mode activities screen" },
+    { "file": "documents.jpg", "caption": "File sharing with the clinic", "alt": "Document upload dialog" }
+  ],
+  "members": []
+}

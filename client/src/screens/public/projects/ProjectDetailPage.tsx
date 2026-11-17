@@ -26,11 +26,19 @@ export default function ProjectDetailPage() {
         {project && (
           <>
             <header className="mt-8 max-w-4xl">
-              <h1 className="font-display text-4xl font-bold tracking-tight text-balance sm:text-6xl">{project.title}</h1>
+              <h1 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-5xl">{project.title}</h1>
               {project.summary && <p className="mt-5 text-xl text-muted-foreground">{project.summary}</p>}
             </header>
             {project.cover && (
-              <img src={project.cover.url} alt={project.cover.alt} className="mt-10 max-h-[32rem] w-full rounded-xl object-cover" />
+              <div className="mt-10 overflow-hidden rounded-xl glass">
+                <div className="flex justify-center bg-primary/10 p-4 sm:p-6">
+                  <img
+                    src={project.cover.url}
+                    alt={project.cover.alt}
+                    className="max-h-[28rem] w-auto max-w-full rounded-lg object-contain"
+                  />
+                </div>
+              </div>
             )}
             <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_16rem]">
               <div className="min-w-0 max-w-3xl">

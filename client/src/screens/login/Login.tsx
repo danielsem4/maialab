@@ -14,7 +14,7 @@ export default function Login() {
   if (userId) return <Navigate to="/admin" replace />;
 
   return (
-    <div className="flex min-h-svh items-center justify-center bg-background p-4">
+    <div className="flex min-h-svh items-center justify-center p-4">
       <Card className="w-full max-w-sm">
         <CardHeader className="items-center text-center">
           <img src="/app_logo.png" alt="" className="mx-auto mb-2 size-12" />

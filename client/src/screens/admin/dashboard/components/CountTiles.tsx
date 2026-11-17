@@ -17,7 +17,7 @@ function CountTile({ to, label, value, note }: TileProps) {
   return (
     <Link
       to={to}
-      className="rounded-lg border bg-card p-4 transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+      className="rounded-lg glass p-4 transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
     >
       <p className="text-sm text-muted-foreground">{label}</p>
       <p className="mt-1 text-2xl font-semibold tabular-nums">{value}</p>
@@ -30,7 +30,7 @@ export function CountTiles({ counts }: CountTilesProps) {
   const { t } = useTranslation();
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       <CountTile
         to="/admin/projects"
         label={t("dashboard.counts.projects")}
@@ -38,8 +38,6 @@ export function CountTiles({ counts }: CountTilesProps) {
         note={t("dashboard.counts.publishedProjects", { count: counts.publishedProjects })}
       />
       <CountTile to="/admin/members" label={t("dashboard.counts.members")} value={counts.members} />
-      <CountTile to="/admin/publications" label={t("dashboard.counts.publications")} value={counts.publications} />
-      <CountTile to="/admin/news" label={t("dashboard.counts.news")} value={counts.news} />
       <CountTile to="/admin/media" label={t("dashboard.counts.media")} value={counts.media} />
     </div>
   );

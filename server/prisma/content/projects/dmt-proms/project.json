@@ -1,0 +1,26 @@
+{
+  "slug": "dmt-proms",
+  "title": "DMT – Proms++",
+  "summary": "Our flagship app: a configurable, modular platform that lets each clinic choose the patient modules it needs — from questionnaires and medication tracking to digital cognitive tests.",
+  "description": "DMT – Proms++ started as a student project: a medication tracker that helped clinicians adjust treatment for people with Parkinson's disease. The app went through successful clinical trials and proved its value in real clinical settings.\n\nAs more hospitals asked for similar features, we rebuilt it as a **generic, configurable platform**. Instead of one app per clinic, every clinic picks and configures the modules that fit its needs. One clinic might use only chat and evaluations, while another focuses on measurement tracking and cognitive tests.\n\n## How it works\n\n- **Accounts created by the therapist.** Patients sign in with an account their therapist set up for them, then choose their clinic.\n- **Home screen.** A message board shows updates from the therapist or the app, plus quick access to the clinic's enabled modules.\n- **Clinician web portal.** Staff manage patients, tests and modules and communicate with patients from a dedicated web interface.\n- **Questionnaire & test builder.** A drag-and-drop editor with a toolbox of components (multiple choice, free text, voice recognition and more), a canvas, and a properties panel, so any questionnaire a clinic needs can be built without code.\n\n## Modules\n\n- **Evaluations** — open, multiple-choice and scale questions, plus an interactive human body model for locating pain.\n- **Medications** — dosage and schedule tracking to support adherence and treatment management.\n- **Measurements & graphs** — health data that patients and therapists can follow over time.\n- **Activities, file sharing and chat.**\n- **Sensors** — device sensors that detect tremor, movement and activity (see [Sensors module](/projects/sensors-module)).\n- **Digital cognitive tests** — see [Digital cognitive test battery](/projects/digital-cognitive-tests).\n\n## Where it's used\n\nThe platform runs modules developed with clinical partners, including the [TENS Care modules with Soroka](/projects/soroka-tens-care), the [COFFE phone-call test](/projects/coffe-phone-test) and [PALPA language assessment](/projects/palpa-language-assessment) with Herzfeld, and the [digital cognitive test battery](/projects/digital-cognitive-tests) with Beit Rivka.\n\nDMT – Proms++ is available on **iOS and Android**, on both phones and tablets.",
+  "status": "ACTIVE",
+  "tags": ["mobile", "platform", "PROMs", "Parkinson's", "clinical-trial"],
+  "featured": true,
+  "sortOrder": 0,
+  "cover": { "file": "cover.jpg", "alt": "DMT – Proms++ home screen on two phones" },
+  "images": [
+    { "file": "login.jpg", "caption": "Sign-in with an account created by the therapist", "alt": "DMT login screen" },
+    { "file": "clinic-select.jpg", "caption": "One app, many clinics: patients choose their clinic", "alt": "Clinic selection screen" },
+    { "file": "home.jpg", "caption": "Home screen with message board and the clinic's modules", "alt": "DMT home screen with module buttons" },
+    { "file": "portal.jpg", "caption": "Clinician web portal: patient management", "alt": "Patient management table in the web portal" },
+    { "file": "builder.jpg", "caption": "Drag-and-drop questionnaire and test builder", "alt": "Questionnaire builder with toolbox, canvas and properties panel" },
+    { "file": "medication-dose.png", "caption": "Adding a medication with dosage and daily frequency", "alt": "Medication dosage form" },
+    { "file": "medication-list.jpg", "caption": "Medication tracking", "alt": "Medication list screen" },
+    { "file": "side-effects.jpg", "caption": "Multi-select evaluation question", "alt": "Evaluation question about medication side effects" },
+    { "file": "parkinson-graph.jpg", "caption": "Parkinson's ON/OFF tracking graph", "alt": "Graph of ON/OFF states over time" },
+    { "file": "on-off-report.png", "caption": "Quick ON/OFF status report", "alt": "Popup for reporting ON/OFF status" },
+    { "file": "google-play.jpg", "caption": "Available on Google Play", "alt": "DMT Proms++ on Google Play" },
+    { "file": "app-store.jpg", "caption": "Available on the App Store", "alt": "DMT Proms++ on the App Store" }
+  ],
+  "members": [{ "email": "erankatsav@gmail.com", "role": "Lab manager" }]
+}

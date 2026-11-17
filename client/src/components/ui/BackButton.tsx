@@ -44,7 +44,7 @@ export const BackButton = ({
 
   if (isNavigatingBack) {
     return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-background">
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center glass-strong">
         <LoadingSpinner 
           title={t("common.loading.title", "Loading")} 
           description={t("common.loading.fetchData", "Fetching data...")} 
