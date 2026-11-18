@@ -1,9 +1,7 @@
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { DeckNotFound } from "./components/DeckNotFound";
+import { DeckWorkspace } from "./components/DeckWorkspace";
 import { useDeckLoader, type DeckLoadStatus } from "./hooks/useDeckLoader";
 
 const FAILURE_KEYS: Partial<Record<DeckLoadStatus, string>> = {
@@ -27,18 +25,5 @@ export default function DeckEditor() {
     );
   }
 
-  return (
-    <div className="flex h-full flex-col">
-      <header className="flex items-center gap-3 border-b p-3">
-        <Button asChild variant="ghost" size="icon">
-          <Link to="/admin/presentations" aria-label={t("decks.editor.back")}>
-            <ArrowLeft className="size-4 rtl:rotate-180" />
-          </Link>
-        </Button>
-        <h1 dir="auto" className="truncate text-base font-semibold">
-          {deck.title}
-        </h1>
-      </header>
-    </div>
-  );
+  return <DeckWorkspace key={deck.id} deck={deck} />;
 }
