@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { elementBoxStyle, slideSurfaceStyle, themeVars } from "./slideStyles";
+import { elementBoxStyle, fontStack, slideSurfaceStyle, themeVars } from "./slideStyles";
 
 const theme = { colors: { background: "#fff", accent: "#2563eb" }, fontHeading: "Rubik", fontBody: "Inter" };
 
@@ -43,5 +43,13 @@ describe("elementBoxStyle", () => {
 
   it("omits the transform when there is no rotation", () => {
     expect(elementBoxStyle({ x: 0, y: 0, w: 1, h: 1, rotation: 0 }).transform).toBeUndefined();
+  });
+});
+
+describe("fontStack", () => {
+  it("falls back to a sans-serif font when the theme font is unavailable", () => {
+    expect(fontStack("body")).toBe("var(--deck-font-body), system-ui, sans-serif");
+    expect(fontStack("heading")).toBe("var(--deck-font-heading), system-ui, sans-serif");
+    expect(slideSurfaceStyle(theme).fontFamily).toBe(fontStack("body"));
   });
 });

@@ -1,17 +1,37 @@
-import { Image, Square } from "lucide-react";
-import type { IDeckElement, IImageProps, IShapeProps } from "@/common/types/Deck";
+import { Image, Square, Type } from "lucide-react";
+import type { IDeckElement, IImageProps, IShapeProps, ITextProps } from "@/common/types/Deck";
 import type { IMedia } from "@/common/types/Media";
 import type { IPoint } from "@/common/utils/geometry";
+import i18n from "@/i18n";
 import { themeColorVar } from "@/lib/deck/colors";
 import { newId } from "@/lib/deck/deckDoc";
+import { emptyTextContent } from "@/lib/deck/richText";
 import { centeredBox, imageBoxSize } from "@/lib/deck/stageGeometry";
 import { ImageInspector } from "./image/ImageInspector";
 import { ImageRender } from "./image/ImageRender";
 import { ShapeInspector } from "./shape/ShapeInspector";
 import { ShapeRender } from "./shape/ShapeRender";
+import { TextInspector } from "./text/TextInspector";
+import { TextRender } from "./text/TextRender";
 import type { IElementDefinition } from "./types";
 
 export const IMAGE_TYPE = "image";
+export const TEXT_TYPE = "text";
+
+const text: IElementDefinition<ITextProps> = {
+  type: TEXT_TYPE,
+  labelKey: "decks.elements.text",
+  icon: Type,
+  defaultSize: { w: 800, h: 200 },
+  createProps: () => ({
+    content: emptyTextContent(i18n.t("decks.elements.textPlaceholder")),
+    dir: "auto",
+    verticalAlign: "top",
+    fontSize: 40,
+  }),
+  Render: TextRender,
+  Inspector: TextInspector,
+};
 
 const shape: IElementDefinition<IShapeProps> = {
   type: "shape",
@@ -35,10 +55,10 @@ const image: IElementDefinition<IImageProps> = {
   keepRatio: true,
 };
 
-export const elementRegistry: Record<string, IElementDefinition> = { shape, image };
+export const elementRegistry: Record<string, IElementDefinition> = { text, shape, image };
 
 /** Order of the items in the palette. */
-export const paletteOrder: string[] = ["shape", IMAGE_TYPE];
+export const paletteOrder: string[] = [TEXT_TYPE, "shape", IMAGE_TYPE];
 
 export function getElementDefinition(type: string): IElementDefinition | null {
   return Object.hasOwn(elementRegistry, type) ? elementRegistry[type] : null;

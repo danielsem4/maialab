@@ -3,6 +3,7 @@ import type { IDeck } from "@/common/types/Deck";
 import { Spinner } from "@/components/ui/spinner";
 import { useDeckSession } from "../hooks/useDeckSession";
 import { useEditorShortcuts } from "../hooks/useEditorShortcuts";
+import { ActiveTextEditorProvider } from "./ActiveTextEditorProvider";
 import { ConflictAlert } from "./ConflictAlert";
 import { EditorCanvas } from "./EditorCanvas";
 import { EditorHeader } from "./EditorHeader";
@@ -32,8 +33,10 @@ export function DeckWorkspace({ deck }: DeckWorkspaceProps) {
       {saveState === "conflict" && <ConflictAlert />}
       <div className="flex min-h-0 flex-1">
         <SlideStrip />
-        <EditorCanvas />
-        <Inspector />
+        <ActiveTextEditorProvider>
+          <EditorCanvas />
+          <Inspector />
+        </ActiveTextEditorProvider>
       </div>
     </div>
   );

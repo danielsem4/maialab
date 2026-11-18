@@ -38,6 +38,10 @@ export function deleteSelection(): void {
   onCurrentSlide((doc, slide) => ops.removeElements(doc, slide.id, ids));
 }
 
+export function deleteElement(elementId: string): void {
+  onCurrentSlide((doc, slide) => ops.removeElements(doc, slide.id, [elementId]));
+}
+
 export function duplicateSelection(): void {
   let newIds: string[] = [];
   const ids = editor().selectedIds;

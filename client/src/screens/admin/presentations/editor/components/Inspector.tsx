@@ -5,6 +5,7 @@ import { GeometryFields } from "./GeometryFields";
 import { LayerButtons } from "./LayerButtons";
 import { SelectionActions } from "./SelectionActions";
 import { SlideSettings } from "./SlideSettings";
+import { TextFormatBar } from "./TextFormatBar";
 
 /** Properties of the selection; of the slide when nothing is selected. */
 export function Inspector() {
@@ -19,10 +20,15 @@ export function Inspector() {
   if (!slide || !theme) return null;
 
   return (
-    <aside className="w-72 shrink-0 space-y-4 overflow-y-auto border-s p-3" aria-label={t("decks.inspector.title")}>
+    <aside
+      data-keep-text-editing
+      className="w-72 shrink-0 space-y-4 overflow-y-auto border-s p-3"
+      aria-label={t("decks.inspector.title")}
+    >
       <h2 className="text-sm font-semibold">
         {element && definition ? t(definition.labelKey) : t("decks.inspector.title")}
       </h2>
+      <TextFormatBar theme={theme} />
       {selectedCount === 0 && <SlideSettings slide={slide} theme={theme} />}
       {selectedCount > 1 && (
         <p className="text-sm text-muted-foreground">{t("decks.inspector.multiSelected", { count: selectedCount })}</p>

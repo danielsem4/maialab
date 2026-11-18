@@ -1,5 +1,6 @@
 import type { PointerEvent } from "react";
 import { flushSync } from "react-dom";
+import { TEXT_TYPE } from "@/components/deck/elements/registry";
 import { useDeckEditorStore } from "@/store/useDeckEditorStore";
 
 /** Anything that belongs to an element or to the move/resize handles drawn around the selection. */
@@ -25,10 +26,17 @@ export function useStageInteractions() {
     flushSync(() => select(next));
   };
 
+  /** Double-click opens a text element for in-place editing. */
+  const handleElementDoubleClick = (id: string, type: string) => {
+    if (type !== TEXT_TYPE) return;
+    select([id]);
+    useDeckEditorStore.getState().setEditingText(id);
+  };
+
   const handleBackgroundPointerDown = (event: PointerEvent) => {
     if (event.target instanceof Element && event.target.closest(NOT_BACKGROUND)) return;
     select([]);
   };
 
-  return { handleElementPointerDown, handleBackgroundPointerDown };
+  return { handleElementPointerDown, handleElementDoubleClick, handleBackgroundPointerDown };
 }

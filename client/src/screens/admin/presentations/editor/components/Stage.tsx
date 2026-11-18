@@ -22,7 +22,7 @@ export function Stage() {
   const theme = useDeckEditorStore((s) => s.doc?.theme);
   const selectedIds = useDeckEditorStore((s) => s.selectedIds);
   const editingTextId = useDeckEditorStore((s) => s.editingTextId);
-  const { handleElementPointerDown, handleBackgroundPointerDown } = useStageInteractions();
+  const { handleElementPointerDown, handleElementDoubleClick, handleBackgroundPointerDown } = useStageInteractions();
 
   return (
     <div
@@ -49,7 +49,9 @@ export function Stage() {
                   element={element}
                   theme={theme}
                   isSelected={selectedIds.includes(element.id)}
+                  isEditing={editingTextId === element.id}
                   onPointerDown={handleElementPointerDown}
+                  onDoubleClick={handleElementDoubleClick}
                 />
               ))}
             </div>

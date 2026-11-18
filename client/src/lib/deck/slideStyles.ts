@@ -17,6 +17,11 @@ export function themeVars(theme: IDeckTheme): CssVars {
   return vars;
 }
 
+/** A theme font with a sans-serif fallback, for when the named font is not installed or loaded. */
+export function fontStack(kind: "heading" | "body"): string {
+  return `var(--deck-font-${kind}), system-ui, sans-serif`;
+}
+
 /** Style for a slide's root at its natural 1920×1080 size; callers scale it with a CSS transform. */
 export function slideSurfaceStyle(theme: IDeckTheme, background?: string): CSSProperties {
   return {
@@ -26,7 +31,7 @@ export function slideSurfaceStyle(theme: IDeckTheme, background?: string): CSSPr
     height: SLIDE_HEIGHT,
     overflow: "hidden",
     background: background ?? "var(--deck-background)",
-    fontFamily: "var(--deck-font-body)",
+    fontFamily: fontStack("body"),
   };
 }
 
