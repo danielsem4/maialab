@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLabInfo } from "@/hooks/queries/useLabInfoQueries";
 import { SocialLinks } from "@/components/common/SocialLinks";
@@ -22,12 +21,7 @@ export function PublicFooter() {
         </div>
         <div className="flex flex-wrap items-center gap-3">
           {labInfo && <SocialLinks links={labInfo.socialLinks} />}
-          <div className="flex items-center gap-3 text-xs text-muted-foreground">
-            <span>{t("site.rights", { year, name: labInfo?.name ?? "" })}</span>
-            <Link to="/login" className="hover:text-foreground hover:underline">
-              {t("site.adminLogin")}
-            </Link>
-          </div>
+          <span className="text-xs text-muted-foreground">{t("site.rights", { year, name: labInfo?.name ?? "" })}</span>
         </div>
       </div>
     </footer>
