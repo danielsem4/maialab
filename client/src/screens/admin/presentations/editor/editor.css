@@ -1,6 +1,0 @@
-/* Snap guides drawn by react-moveable while dragging: magenta, so they stand out on any slide. */
-.deck-stage .moveable-line.moveable-guideline,
-.deck-stage .moveable-line.moveable-dashed {
-  background: #e11dff !important;
-  border-color: #e11dff !important;
-}

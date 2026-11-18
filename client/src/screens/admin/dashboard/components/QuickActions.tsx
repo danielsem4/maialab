@@ -1,4 +1,4 @@
-import { FileText, Plus, UserPlus } from "lucide-react";
+import { Plus, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -22,12 +22,6 @@ export function QuickActions() {
           <Link to="/admin/members/new">
             <UserPlus className="size-4" />
             {t("members.newMember")}
-          </Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link to="/admin/presentations">
-            <FileText className="size-4" />
-            {t("nav.presentations")}
           </Link>
         </Button>
       </div>

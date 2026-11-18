@@ -1,5 +1,4 @@
 import { createBrowserRouter, type RouteObject } from "react-router-dom";
-import AuthOnlyLayout from "@/common/components/layouts/AuthOnlyLayout";
 import ProtectedLayout from "@/common/components/layouts/ProtectedLayout";
 import PublicLayout from "@/common/components/layouts/PublicLayout";
 import NotFound from "@/screens/not-found/NotFound";
@@ -25,7 +24,6 @@ const adminRoutes: RouteObject[] = [
   { path: "members/:id", ...lazyPage(() => import("@/screens/admin/members/MemberEditor")) },
   { path: "media", ...lazyPage(() => import("@/screens/admin/media/MediaLibrary")) },
   { path: "lab-info", ...lazyPage(() => import("@/screens/admin/lab-info/LabInfoEditor")) },
-  { path: "presentations", ...lazyPage(() => import("@/screens/admin/presentations/PresentationsBuilder")) },
   { path: "users", ...lazyPage(() => import("@/screens/admin/users/UsersList")) },
 ];
 
@@ -46,16 +44,6 @@ export const router = createBrowserRouter([
     path: "/admin",
     element: <ProtectedLayout />,
     children: adminRoutes,
-  },
-  {
-    // Full-screen editor: same auth guard as /admin, without the sidebar shell.
-    element: <AuthOnlyLayout />,
-    children: [
-      {
-        path: "/admin/presentations/:id/edit",
-        ...lazyPage(() => import("@/screens/admin/presentations/editor/DeckEditor")),
-      },
-    ],
   },
   { path: "*", element: <NotFound /> },
 ]);

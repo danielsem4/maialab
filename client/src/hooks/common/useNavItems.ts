@@ -2,7 +2,6 @@ import {
   Image,
   Info,
   LayoutDashboard,
-  Presentation,
   ShieldCheck,
   Users,
   FlaskConical,
@@ -17,7 +16,6 @@ export const ADMIN_NAV = [
   { key: "nav.team", url: "/admin/members", icon: Users },
   { key: "nav.media", url: "/admin/media", icon: Image },
   { key: "nav.labInfo", url: "/admin/lab-info", icon: Info },
-  { key: "nav.presentations", url: "/admin/presentations", icon: Presentation },
   { key: "nav.users", url: "/admin/users", icon: ShieldCheck, superAdminOnly: true },
 ] as const;
 

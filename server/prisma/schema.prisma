@@ -25,7 +25,6 @@ model User {
   auditLogs AuditLog[]
   otpCodes  OtpCode[]
   media     Media[]
-  decks     Deck[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -226,22 +225,4 @@ model NewsPost {
   updatedAt DateTime @updatedAt
 
   @@index([published, date])
-}
-
-// ─── Presentation builder ───────────────────────────────────────
-
-// A saved deck: the whole slide document lives in `doc` and is replaced on every save.
-model Deck {
-  id          Int     @id @default(autoincrement())
-  title       String
-  isTemplate  Boolean @default(false)
-  doc         Json
-  createdById Int?
-
-  createdBy User? @relation(fields: [createdById], references: [id], onDelete: SetNull)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([isTemplate, updatedAt])
 }

@@ -27,9 +27,4 @@ export const queryKeys = {
     publicDetail: (slug: string) => ["news", "public", slug] as const,
     admin: () => ["news", "admin"] as const,
   },
-  decks: {
-    all: ["decks"] as const,
-    list: () => ["decks", "list"] as const,
-    detail: (id: number) => ["decks", "detail", id] as const,
-  },
 };

@@ -22,8 +22,6 @@ export default function ProjectEditor() {
           <ProjectEditorActions
             project={editor.project}
             isSaving={editor.isSaving}
-            isExporting={editor.isExporting}
-            onExport={editor.handleExport}
             onDelete={editor.handleDelete}
           />
         }
