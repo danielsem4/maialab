@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { MarkdownView } from "@/components/common/MarkdownView";
 import { PublicNotFound } from "@/components/common/PublicNotFound";
 import { QueryState } from "@/components/common/QueryState";
+import { ZoomableImage } from "@/components/common/ZoomableImage";
 import { usePublishedProject } from "@/hooks/queries/useProjectQueries";
 import { getDemo } from "./demos/demoRegistry";
 import { ProjectDemoCta } from "./components/ProjectDemoCta";
@@ -36,7 +37,7 @@ export default function ProjectDetailPage() {
             {project.cover && (
               <div className="mt-10 overflow-hidden rounded-xl glass">
                 <div className="flex justify-center bg-primary/10 p-4 sm:p-6">
-                  <img
+                  <ZoomableImage
                     src={project.cover.url}
                     alt={project.cover.alt}
                     className="max-h-[28rem] w-auto max-w-full rounded-lg object-contain"

@@ -35,6 +35,8 @@ const he = {
   },
 
   common: {
+    enlargeImage: "הצגת התמונה בגדול",
+    imagePreview: "תצוגת תמונה",
     back: "חזרה",
     toggleSidebar: "הצג/הסתר תפריט",
     comingSoon: "בקרוב",

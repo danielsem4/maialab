@@ -35,6 +35,8 @@ const ar = {
   },
 
   common: {
+    enlargeImage: "عرض الصورة بحجم أكبر",
+    imagePreview: "معاينة الصورة",
     back: "رجوع",
     toggleSidebar: "إظهار/إخفاء القائمة",
     comingSoon: "قريباً",

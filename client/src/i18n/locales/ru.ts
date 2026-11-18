@@ -35,6 +35,8 @@ const ru = {
   },
 
   common: {
+    enlargeImage: "Открыть изображение крупнее",
+    imagePreview: "Просмотр изображения",
     back: "Назад",
     toggleSidebar: "Показать/скрыть меню",
     comingSoon: "Скоро",

@@ -35,6 +35,8 @@ const en = {
   },
 
   common: {
+    enlargeImage: "View larger image",
+    imagePreview: "Image preview",
     back: "Back",
     toggleSidebar: "Toggle sidebar",
     comingSoon: "Coming soon",
