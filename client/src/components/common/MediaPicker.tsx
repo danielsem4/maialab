@@ -18,13 +18,23 @@ interface MediaPickerProps {
   onSelect: (media: IMedia) => void;
   /** Only show files whose MIME type starts with this, e.g. "image/". */
   mimePrefix?: string;
+  /** Pass `open` to control the dialog from outside; no trigger button is rendered then. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export function MediaPicker({ onSelect, mimePrefix = "image/" }: MediaPickerProps) {
+export function MediaPicker({ onSelect, mimePrefix = "image/", open: controlledOpen, onOpenChange }: MediaPickerProps) {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : internalOpen;
   const library = useMediaLibrary(open);
   const items = (library.data ?? []).filter((m) => m.mimeType.startsWith(mimePrefix));
+
+  const setOpen = (next: boolean) => {
+    if (!isControlled) setInternalOpen(next);
+    onOpenChange?.(next);
+  };
 
   const handleSelect = (media: IMedia) => {
     onSelect(media);
@@ -33,12 +43,14 @@ export function MediaPicker({ onSelect, mimePrefix = "image/" }: MediaPickerProp
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button type="button" variant="outline" size="sm">
-          <Images className="size-4" />
-          {t("media.chooseFromLibrary")}
-        </Button>
-      </DialogTrigger>
+      {!isControlled && (
+        <DialogTrigger asChild>
+          <Button type="button" variant="outline" size="sm">
+            <Images className="size-4" />
+            {t("media.chooseFromLibrary")}
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-3xl">
         <DialogHeader>
           <DialogTitle>{t("media.chooseFromLibrary")}</DialogTitle>

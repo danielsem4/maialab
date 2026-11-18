@@ -1,6 +1,6 @@
 import type { IDeckElement, IDeckTheme } from "@/common/types/Deck";
 import { elementBoxStyle } from "@/lib/deck/slideStyles";
-import { UnknownElement } from "./elements/UnknownElement";
+import { ElementBody } from "./ElementBody";
 
 interface ElementViewProps {
   element: IDeckElement;
@@ -8,10 +8,10 @@ interface ElementViewProps {
 }
 
 /** Positions one element in slide space and renders its body. */
-export function ElementView({ element }: ElementViewProps) {
+export function ElementView({ element, theme }: ElementViewProps) {
   return (
     <div style={elementBoxStyle(element)}>
-      <UnknownElement type={element.type} />
+      <ElementBody element={element} theme={theme} />
     </div>
   );
 }

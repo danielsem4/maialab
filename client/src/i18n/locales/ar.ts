@@ -375,6 +375,7 @@ const ar = {
       useTheme: "استخدام السمة",
       customColor: "لون مخصص",
       themeColor: "لون السمة: {{name}}",
+      noColor: "بلا لون",
       multiSelected: "تم تحديد {{count}} عناصر",
     },
     text: {

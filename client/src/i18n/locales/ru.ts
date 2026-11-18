@@ -375,6 +375,7 @@ const ru = {
       useTheme: "Как в теме",
       customColor: "Свой цвет",
       themeColor: "Цвет темы: {{name}}",
+      noColor: "Без цвета",
       multiSelected: "Выбрано элементов: {{count}}",
     },
     text: {

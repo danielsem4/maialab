@@ -375,6 +375,7 @@ const he = {
       useTheme: "לפי ערכת הנושא",
       customColor: "צבע מותאם",
       themeColor: "צבע ערכת הנושא: {{name}}",
+      noColor: "ללא צבע",
       multiSelected: "נבחרו {{count}} רכיבים",
     },
     text: {

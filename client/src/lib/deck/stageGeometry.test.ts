@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { centeredBox, clampElement, containScale } from "./stageGeometry";
+import { centeredBox, clampElement, containScale, finalizeFrame, imageBoxSize } from "./stageGeometry";
 
 describe("clampElement", () => {
   it("enforces a minimum size", () => {
@@ -30,6 +30,10 @@ describe("centeredBox", () => {
     expect(centeredBox(100, 100, { x: 500, y: 300 })).toEqual({ x: 450, y: 250, w: 100, h: 100 });
   });
 
+  it("rounds to whole pixels", () => {
+    expect(centeredBox(101, 101, { x: 500.4, y: 300.2 })).toEqual({ x: 450, y: 250, w: 101, h: 101 });
+  });
+
   it("clamps a point far outside the slide", () => {
     expect(centeredBox(100, 100, { x: 9000, y: 300 })).toMatchObject({ x: 1900 });
   });
@@ -47,5 +51,31 @@ describe("containScale", () => {
 
   it("never collapses to zero", () => {
     expect(containScale(0, 0)).toBe(0.05);
+  });
+});
+
+describe("imageBoxSize", () => {
+  it("makes the longer side 800 and keeps the aspect ratio", () => {
+    expect(imageBoxSize(4000, 2000)).toEqual({ w: 800, h: 400 });
+    expect(imageBoxSize(500, 1000)).toEqual({ w: 400, h: 800 });
+  });
+
+  it("falls back to 600×400 without usable dimensions", () => {
+    expect(imageBoxSize(null, null)).toEqual({ w: 600, h: 400 });
+    expect(imageBoxSize(0, 300)).toEqual({ w: 600, h: 400 });
+  });
+});
+
+describe("finalizeFrame", () => {
+  it("rounds, clamps and normalises the rotation", () => {
+    expect(finalizeFrame({ x: 10.4, y: 20.6, w: 100.5, h: 3, rotation: -90.2 })).toEqual({
+      x: 10,
+      y: 21,
+      w: 101,
+      h: 20,
+      rotation: 270,
+    });
+    expect(finalizeFrame({ x: 0, y: 0, w: 50, h: 50, rotation: 720 }).rotation).toBe(0);
+    expect(finalizeFrame({ x: 0, y: 0, w: 50, h: 50, rotation: NaN }).rotation).toBe(0);
   });
 });

@@ -375,6 +375,7 @@ const en = {
       useTheme: "Use theme",
       customColor: "Custom colour",
       themeColor: "Theme colour: {{name}}",
+      noColor: "No colour",
       multiSelected: "{{count}} elements selected",
     },
     text: {

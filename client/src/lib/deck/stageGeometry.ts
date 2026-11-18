@@ -32,11 +32,38 @@ export function clampElement(box: IBox): IBox {
 
 export function centeredBox(w: number, h: number, center?: IPoint): IBox {
   const c = center ?? { x: SLIDE_WIDTH / 2, y: SLIDE_HEIGHT / 2 };
-  return clampElement({ x: c.x - w / 2, y: c.y - h / 2, w, h });
+  // Whole pixels: a drop point converted from screen coordinates is rarely an integer.
+  return clampElement({ x: Math.round(c.x - w / 2), y: Math.round(c.y - h / 2), w, h });
 }
 
 /** Scale that fits the whole slide into a container, leaving `padding` px free on every side. */
 export function containScale(containerW: number, containerH: number, padding = 0): number {
   const scale = Math.min((containerW - padding * 2) / SLIDE_WIDTH, (containerH - padding * 2) / SLIDE_HEIGHT);
   return Number.isFinite(scale) ? Math.max(MIN_SCALE, scale) : MIN_SCALE;
+}
+
+export interface IFrame extends IBox {
+  rotation: number;
+}
+
+const IMAGE_LONG_SIDE = 800;
+const IMAGE_FALLBACK = { w: 600, h: 400 };
+
+/** Initial box for an inserted image: its aspect ratio with the longer side at 800. */
+export function imageBoxSize(width: number | null, height: number | null): { w: number; h: number } {
+  if (!width || !height || width <= 0 || height <= 0) return IMAGE_FALLBACK;
+  const ratio = IMAGE_LONG_SIDE / Math.max(width, height);
+  return { w: Math.round(width * ratio), h: Math.round(height * ratio) };
+}
+
+/** What gets stored after a move/resize/rotate gesture: whole pixels, valid bounds, rotation in [0, 360). */
+export function finalizeFrame(frame: IFrame): IFrame {
+  const box = clampElement({
+    x: Math.round(frame.x),
+    y: Math.round(frame.y),
+    w: Math.round(frame.w),
+    h: Math.round(frame.h),
+  });
+  const rotation = Number.isFinite(frame.rotation) ? ((Math.round(frame.rotation) % 360) + 360) % 360 : 0;
+  return { ...box, rotation };
 }
