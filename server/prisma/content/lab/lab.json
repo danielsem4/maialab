@@ -4,7 +4,7 @@
     "about": "The MAIA (Medical Artificial Intelligence-based Applications) lab at HIT – Holon Institute of Technology was established in 2020. We build accessible, easy-to-use mobile and tablet applications for patients and clinical teams.\n\nOur apps track patient progress, make communication between patients and therapists easier, and replace outdated pen-and-paper methods with digital tools. Modernizing these processes improves patient care and produces rich data, which we use to build AI-driven decision-support tools for medical staff.",
     "mission": "- **Connect patients and therapists** remotely, wherever treatment continues.\n- **Give therapists detailed patient data** and let patients see their own progress.\n- **Digitize pen-and-paper cognitive tests** to improve accuracy, consistency and data collection.\n- **Turn collected data into AI decision support** for clinical teams.\n- **Integrate sensors** — built-in device sensors and medical equipment — into everyday care.\n- **Engage students**: projects start with Computer Science and Medical Technologies students working with a lab supervisor, then move to the lab for further development.",
     "contactEmail": "erankatsav@gmail.com",
-    "hero": { "file": "hero.jpg", "alt": "Illustration of a futuristic medical AI lab with robots and screens" }
+    "hero": { "file": "hero.png", "alt": "MAIA – Medical AI based Applications" }
   },
   "members": [
     {

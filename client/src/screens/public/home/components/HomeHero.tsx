@@ -44,7 +44,7 @@ export function HomeHero({ labInfo, isLoading, needsSetup }: HomeHeroProps) {
           <img
             src={labInfo.hero.url}
             alt={labInfo.hero.alt}
-            className="aspect-[4/3] max-h-[60vh] w-full rounded-2xl object-cover sm:aspect-[21/9]"
+            className="h-auto w-full rounded-2xl"
           />
         </div>
       )}
