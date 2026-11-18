@@ -358,7 +358,6 @@ const he = {
     latestNews: "חדשות אחרונות",
     allNews: "כל החדשות",
     about: "אודות המעבדה",
-    mission: "משימה",
     contactTitle: "יצירת קשר",
     contactIntro: "מעוניינים להצטרף או לשתף פעולה? צרו קשר.",
     email: "אימייל",

@@ -358,7 +358,6 @@ const en = {
     latestNews: "Latest news",
     allNews: "All news",
     about: "About the lab",
-    mission: "Mission",
     contactTitle: "Contact",
     contactIntro: "Interested in joining or collaborating? Get in touch.",
     email: "Email",

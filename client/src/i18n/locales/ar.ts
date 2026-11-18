@@ -358,7 +358,6 @@ const ar = {
     latestNews: "آخر الأخبار",
     allNews: "كل الأخبار",
     about: "عن المختبر",
-    mission: "الرسالة",
     contactTitle: "اتصل بنا",
     contactIntro: "مهتم بالانضمام أو التعاون؟ تواصل معنا.",
     email: "البريد الإلكتروني",
