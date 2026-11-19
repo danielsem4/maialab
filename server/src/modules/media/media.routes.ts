@@ -3,7 +3,7 @@ import multer from 'multer';
 import { AppError } from '../../shared/errors/AppError';
 import { requireAdmin } from '../../shared/middlewares/requireAdmin';
 import { validateRequest } from '../../shared/middlewares/validateRequest';
-import { storage } from '../../shared/storage/localStorage';
+import { storage } from '../../shared/storage';
 import { MediaRepository } from './media.repository';
 import { MediaService } from './media.service';
 import { createMediaController } from './media.controller';

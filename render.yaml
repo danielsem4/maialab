@@ -1,0 +1,36 @@
+# Render Blueprint: one free web service serving the API and the built client.
+# Database: Neon Postgres. Media: Cloudflare R2. Secrets (sync: false) are entered in the Render dashboard.
+services:
+  - type: web
+    name: maialab
+    runtime: node
+    plan: free
+    buildCommand: >-
+      cd client && npm ci --include=dev && npm run build &&
+      cd ../server && npm ci --include=dev && npx prisma generate && npm run build
+    startCommand: cd server && npx prisma migrate deploy && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      # Demo only: log in with email + password, no emailed code
+      - key: REQUIRE_LOGIN_OTP
+        value: "false"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET
+        sync: false
+      - key: R2_PUBLIC_URL
+        sync: false

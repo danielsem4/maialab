@@ -15,16 +15,10 @@ export class LocalStorage implements IStorage {
   }
 
   async remove(filename: string): Promise<void> {
-    await fs.rm(this.resolvePath(filename), { force: true });
-  }
-
-  resolvePath(filename: string): string {
-    return path.join(UPLOAD_DIR, path.basename(filename));
+    await fs.rm(path.join(UPLOAD_DIR, path.basename(filename)), { force: true });
   }
 
   publicUrl(filename: string): string {
     return `${UPLOAD_URL_PREFIX}/${filename}`;
   }
 }
-
-export const storage: IStorage = new LocalStorage();

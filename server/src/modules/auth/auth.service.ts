@@ -21,6 +21,10 @@ interface LoginOtpResult {
   email: string;
 }
 
+interface LoginDirectResult extends VerifyOtpResult {
+  requiresOtp: false;
+}
+
 interface ForgotPasswordResult {
   otpToken: string;
   email: string;
@@ -38,6 +42,11 @@ function maskEmail(email: string): string {
   return `${visible}***@${domain}`;
 }
 
+// The OTP step can be switched off for demo deployments (REQUIRE_LOGIN_OTP=false).
+function isOtpRequired(): boolean {
+  return process.env['REQUIRE_LOGIN_OTP'] !== 'false';
+}
+
 function getJwtSecret(): string {
   const secret = process.env['JWT_SECRET'];
   if (!secret) throw new Error('JWT_SECRET is not configured');
@@ -50,7 +59,7 @@ export class AuthService {
     private readonly otpRepository: IOtpRepository,
   ) {}
 
-  async login(dto: LoginDto): Promise<LoginOtpResult> {
+  async login(dto: LoginDto): Promise<LoginOtpResult | LoginDirectResult> {
     const user = await this.repository.findByEmail(dto.email);
     if (!user || !user.isActive) {
       throw new AppError('Invalid email or password', 401);
@@ -59,6 +68,10 @@ export class AuthService {
     const isValid = await bcrypt.compare(dto.password, user.hashPassword);
     if (!isValid) {
       throw new AppError('Invalid email or password', 401);
+    }
+
+    if (!isOtpRequired()) {
+      return { requiresOtp: false, ...this.issueSession(user) };
     }
 
     // Invalidate any previous unused OTPs
@@ -97,6 +110,10 @@ export class AuthService {
       throw new AppError('Authentication required', 401);
     }
 
+    return this.issueSession(user);
+  }
+
+  private issueSession(user: { id: number; email: string; name: string | null; phone: string | null; role: string }): VerifyOtpResult {
     // Issue the real auth JWT
     const secret = getJwtSecret();
     const token = jwt.sign(

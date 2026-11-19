@@ -1,4 +1,4 @@
-import { storage } from '../storage/localStorage';
+import { storage } from '../storage';
 
 export interface MediaRecord {
   id: number;

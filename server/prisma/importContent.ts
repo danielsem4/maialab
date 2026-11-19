@@ -8,7 +8,7 @@ import path from "path";
 import pg from "pg";
 import { imageSize } from "image-size";
 import "dotenv/config";
-import { storage } from "../src/shared/storage/localStorage";
+import { storage } from "../src/shared/storage";
 
 const pool = new pg.Pool({ connectionString: process.env["DATABASE_URL"] });
 const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
