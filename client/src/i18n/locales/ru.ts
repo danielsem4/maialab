@@ -22,12 +22,17 @@ const ru = {
   },
 
   login: {
+    subtitle: "Введите эл. почту и пароль, чтобы продолжить",
+    emailPlaceholder: "name@example.com",
+    passwordPlaceholder: "Введите пароль",
+    showPassword: "Показать пароль",
+    hidePassword: "Скрыть пароль",
     title: "Вход в панель администратора",
     email: "Эл. почта",
     password: "Пароль",
     submit: "Продолжить",
     otpTitle: "Проверьте почту",
-    otpDescription: "Мы отправили 6-значный код на {{email}}.",
+    otpDescription: "Мы отправили 6-значный код на <email>{{email}}</email>.",
     verify: "Подтвердить и войти",
     useAnotherAccount: "Войти с другим аккаунтом",
     invalidCredentials: "Неверный адрес эл. почты или пароль.",

@@ -22,12 +22,17 @@ const en = {
   },
 
   login: {
+    subtitle: "Enter your email and password to continue",
+    emailPlaceholder: "name@example.com",
+    passwordPlaceholder: "Enter your password",
+    showPassword: "Show password",
+    hidePassword: "Hide password",
     title: "Sign in to the admin panel",
     email: "Email",
     password: "Password",
     submit: "Continue",
     otpTitle: "Check your email",
-    otpDescription: "We sent a 6-digit code to {{email}}.",
+    otpDescription: "We sent a 6-digit code to <email>{{email}}</email>.",
     verify: "Verify and sign in",
     useAnotherAccount: "Use another account",
     invalidCredentials: "The email or password is incorrect.",

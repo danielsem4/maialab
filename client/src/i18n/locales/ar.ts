@@ -22,12 +22,17 @@ const ar = {
   },
 
   login: {
+    subtitle: "أدخل بريدك الإلكتروني وكلمة المرور للمتابعة",
+    emailPlaceholder: "name@example.com",
+    passwordPlaceholder: "أدخل كلمة المرور",
+    showPassword: "إظهار كلمة المرور",
+    hidePassword: "إخفاء كلمة المرور",
     title: "تسجيل الدخول إلى لوحة الإدارة",
     email: "البريد الإلكتروني",
     password: "كلمة المرور",
     submit: "متابعة",
     otpTitle: "تحقّق من بريدك الإلكتروني",
-    otpDescription: "أرسلنا رمزاً مكوّناً من 6 أرقام إلى {{email}}.",
+    otpDescription: "أرسلنا رمزاً مكوّناً من 6 أرقام إلى <email>{{email}}</email>.",
     verify: "التحقق وتسجيل الدخول",
     useAnotherAccount: "استخدام حساب آخر",
     invalidCredentials: "البريد الإلكتروني أو كلمة المرور غير صحيحة.",

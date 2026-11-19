@@ -22,12 +22,17 @@ const he = {
   },
 
   login: {
+    subtitle: "הזינו אימייל וסיסמה כדי להמשיך",
+    emailPlaceholder: "name@example.com",
+    passwordPlaceholder: "הזינו סיסמה",
+    showPassword: "הצגת סיסמה",
+    hidePassword: "הסתרת סיסמה",
     title: "כניסה לממשק הניהול",
     email: "אימייל",
     password: "סיסמה",
     submit: "המשך",
     otpTitle: "בדקו את תיבת הדואר",
-    otpDescription: "שלחנו קוד בן 6 ספרות אל {{email}}.",
+    otpDescription: "שלחנו קוד בן 6 ספרות אל <email>{{email}}</email>.",
     verify: "אימות וכניסה",
     useAnotherAccount: "שימוש בחשבון אחר",
     invalidCredentials: "האימייל או הסיסמה שגויים.",
