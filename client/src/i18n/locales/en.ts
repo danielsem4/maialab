@@ -101,7 +101,7 @@ const en = {
     dropHere: "Drop a file here or click to choose",
     uploading: "Uploading...",
     uploaded: "Uploaded",
-    tooLarge: "Files must be 10 MB or smaller",
+    tooLarge: "Files must be 4 MB or smaller",
     unsupported: "Use JPG, PNG, WebP, GIF or PDF",
     chooseFromLibrary: "Choose from library",
     choose: "Choose",

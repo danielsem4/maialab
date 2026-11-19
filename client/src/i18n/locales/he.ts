@@ -101,7 +101,7 @@ const he = {
     dropHere: "גררו קובץ לכאן או לחצו לבחירה",
     uploading: "מעלה...",
     uploaded: "הועלה",
-    tooLarge: "גודל הקובץ מוגבל ל-10 MB",
+    tooLarge: "גודל הקובץ מוגבל ל-4 MB",
     unsupported: "יש להשתמש ב-JPG, PNG, WebP, GIF או PDF",
     chooseFromLibrary: "בחירה מהספרייה",
     choose: "בחירה",

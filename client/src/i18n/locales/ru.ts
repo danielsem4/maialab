@@ -101,7 +101,7 @@ const ru = {
     dropHere: "Перетащите файл сюда или нажмите, чтобы выбрать",
     uploading: "Загрузка...",
     uploaded: "Загружено",
-    tooLarge: "Размер файла не должен превышать 10 MB",
+    tooLarge: "Размер файла не должен превышать 4 MB",
     unsupported: "Используйте JPG, PNG, WebP, GIF или PDF",
     chooseFromLibrary: "Выбрать из медиатеки",
     choose: "Выбрать",

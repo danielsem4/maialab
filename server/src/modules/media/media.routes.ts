@@ -25,7 +25,7 @@ const upload = multer({
 function handleUpload(req: Request, res: Response, next: NextFunction): void {
   upload.single('file')(req, res, (err: unknown) => {
     if (err instanceof multer.MulterError) {
-      const message = err.code === 'LIMIT_FILE_SIZE' ? 'File is larger than 10 MB' : err.message;
+      const message = err.code === 'LIMIT_FILE_SIZE' ? 'File is larger than 4 MB' : err.message;
       next(new AppError(message, 400));
       return;
     }

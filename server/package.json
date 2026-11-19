@@ -11,16 +11,17 @@
     "db:generate": "npx prisma generate",
     "db:studio": "npx prisma studio",
     "db:seed": "npx prisma db seed",
-    "db:import-content": "npx ts-node prisma/importContent.ts"
+    "db:import-content": "npx ts-node prisma/importContent.ts",
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1172.0",
     "@aws-sdk/client-ses": "^3.750.0",
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
+    "@vercel/blob": "^2.9.0",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",

@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import type { IMedia } from "@/common/types/Media";
 import { useUploadMedia } from "@/hooks/queries/useMediaQueries";
 
-export const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
+export const MAX_UPLOAD_BYTES = 4 * 1024 * 1024; // Vercel caps request bodies at 4.5 MB
 export const IMAGE_ACCEPT = "image/jpeg,image/png,image/webp,image/gif";
 export const PDF_ACCEPT = "application/pdf";
 

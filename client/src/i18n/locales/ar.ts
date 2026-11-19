@@ -101,7 +101,7 @@ const ar = {
     dropHere: "أفلت ملفاً هنا أو انقر للاختيار",
     uploading: "جارٍ الرفع...",
     uploaded: "تم الرفع",
-    tooLarge: "يجب ألا يتجاوز حجم الملف 10 MB",
+    tooLarge: "يجب ألا يتجاوز حجم الملف 4 MB",
     unsupported: "استخدم JPG أو PNG أو WebP أو GIF أو PDF",
     chooseFromLibrary: "اختيار من المكتبة",
     choose: "اختيار",

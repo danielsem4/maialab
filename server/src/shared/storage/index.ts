@@ -1,22 +1,15 @@
 import type { IStorage } from './IStorage';
+import { BlobStorage } from './blobStorage';
 import { LocalStorage } from './localStorage';
-import { R2Storage } from './r2Storage';
 
 function createStorage(): IStorage {
-  const bucket = process.env['R2_BUCKET'];
-  if (!bucket) return new LocalStorage();
+  const baseUrl = process.env['BLOB_BASE_URL'];
+  if (!baseUrl) return new LocalStorage();
 
-  const required = ['R2_ACCOUNT_ID', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_PUBLIC_URL'];
-  const missing = required.filter((key) => !process.env[key]);
-  if (missing.length > 0) throw new Error(`R2_BUCKET is set but missing: ${missing.join(', ')}`);
-
-  return new R2Storage({
-    accountId: process.env['R2_ACCOUNT_ID']!,
-    accessKeyId: process.env['R2_ACCESS_KEY_ID']!,
-    secretAccessKey: process.env['R2_SECRET_ACCESS_KEY']!,
-    bucket,
-    publicUrl: process.env['R2_PUBLIC_URL']!,
-  });
+  if (!process.env['BLOB_READ_WRITE_TOKEN']) {
+    throw new Error('BLOB_BASE_URL is set but BLOB_READ_WRITE_TOKEN is missing');
+  }
+  return new BlobStorage(baseUrl);
 }
 
 export const storage: IStorage = createStorage();
