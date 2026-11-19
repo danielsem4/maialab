@@ -10,7 +10,6 @@ Lab website + admin panel: **React** client + **Express + TypeScript** server, *
   - manage the media library;
   - see a dashboard with recent changes (every admin write is audited).
   - Super admins also manage admin accounts.
-- **PowerPoint export**: a deck per project (Export PPTX in the project editor), or a lab overview deck built from chosen projects (Admin → Presentations).
 - Uploaded files are stored in `server/uploads/` (or `UPLOAD_DIR`) and served at `/uploads`.
 
 ## Prerequisites

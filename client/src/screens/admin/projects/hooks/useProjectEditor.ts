@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAdminProject, useDeleteProject, useSaveProject } from "@/hooks/queries/useProjectQueries";
-import { useDownloadProjectDeck } from "@/hooks/queries/usePresentationQueries";
 import {
   EMPTY_PROJECT_FORM,
   formToProjectInput,
@@ -35,16 +34,11 @@ export function useProjectEditor() {
 
   const save = useSaveProject(projectId, handleSaved);
   const remove = useDeleteProject();
-  const exportDeck = useDownloadProjectDeck();
 
   const handleSubmit = form.handleSubmit((values) => save.mutate(formToProjectInput(values)));
 
   const handleDelete = () => {
     if (projectId) remove.mutate(projectId, { onSuccess: () => navigate("/admin/projects") });
-  };
-
-  const handleExport = () => {
-    if (projectId) exportDeck.mutate(projectId);
   };
 
   return {
@@ -54,9 +48,7 @@ export function useProjectEditor() {
     isLoading: projectQuery.isLoading,
     isError: projectQuery.isError,
     isSaving: save.isPending,
-    isExporting: exportDeck.isPending,
     handleSubmit,
     handleDelete,
-    handleExport,
   };
 }

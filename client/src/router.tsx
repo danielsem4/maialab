@@ -24,7 +24,6 @@ const adminRoutes: RouteObject[] = [
   { path: "members/:id", ...lazyPage(() => import("@/screens/admin/members/MemberEditor")) },
   { path: "media", ...lazyPage(() => import("@/screens/admin/media/MediaLibrary")) },
   { path: "lab-info", ...lazyPage(() => import("@/screens/admin/lab-info/LabInfoEditor")) },
-  { path: "presentations", ...lazyPage(() => import("@/screens/admin/presentations/PresentationsBuilder")) },
   { path: "users", ...lazyPage(() => import("@/screens/admin/users/UsersList")) },
 ];
 
