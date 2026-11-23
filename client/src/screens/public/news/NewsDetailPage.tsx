@@ -1,7 +1,7 @@
-import { ArrowLeft } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { formatFullDate } from "@/common/utils/formatDate";
+import { BackLink } from "@/components/common/BackLink";
 import { MarkdownView } from "@/components/common/MarkdownView";
 import { PublicNotFound } from "@/components/common/PublicNotFound";
 import { QueryState } from "@/components/common/QueryState";
@@ -15,18 +15,12 @@ export default function NewsDetailPage() {
   if (isError) return <PublicNotFound backTo="/news" backLabel={t("news.backToNews")} />;
 
   return (
-    <article className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
-      <Link
-        to="/news"
-        className="inline-flex items-center gap-2 rounded-sm text-sm text-muted-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-      >
-        <ArrowLeft className="size-4 rtl:rotate-180" />
-        {t("news.backToNews")}
-      </Link>
+    <article className="mx-auto max-w-6xl px-4 pt-4 sm:px-6 sm:pt-10">
+      <BackLink to="/news" label={t("news.backToNews")} />
       <QueryState isLoading={isLoading} isError={false}>
         {post && (
           <>
-            <header className="mt-8 max-w-4xl">
+            <header className="mt-4 max-w-4xl sm:mt-8">
               <time dateTime={post.date} className="text-sm text-muted-foreground">
                 {formatFullDate(post.date, i18n.language)}
               </time>
@@ -35,10 +29,10 @@ export default function NewsDetailPage() {
               </h1>
             </header>
             {post.cover && (
-              <img src={post.cover.url} alt={post.cover.alt} className="mt-10 max-h-[32rem] w-full rounded-xl object-cover" />
+              <img src={post.cover.url} alt={post.cover.alt} className="mt-6 max-h-[32rem] w-full rounded-xl object-cover sm:mt-10" />
             )}
-            <div className="mt-12 max-w-prose">
-              <MarkdownView content={post.body} className="text-lg" />
+            <div className="mt-8 max-w-prose sm:mt-12">
+              <MarkdownView content={post.body} className="text-base sm:text-lg" />
             </div>
           </>
         )}

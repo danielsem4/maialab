@@ -8,6 +8,11 @@ export function createAuthController(service: AuthService) {
     async login(req: Request, res: Response, next: NextFunction): Promise<void> {
       try {
         const result = await service.login(req.body as LoginDto);
+        if (!result.requiresOtp) {
+          res.cookie(AUTH_COOKIE_NAME, result.token, AUTH_COOKIE_OPTIONS);
+          res.json({ requiresOtp: false, user: result.user });
+          return;
+        }
         res.clearCookie(AUTH_COOKIE_NAME, AUTH_COOKIE_CLEAR_OPTIONS);
         res.json(result);
       } catch (err) {

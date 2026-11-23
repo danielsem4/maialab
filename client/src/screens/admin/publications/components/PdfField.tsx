@@ -5,6 +5,8 @@ import { MediaPicker } from "@/components/common/MediaPicker";
 import { Button } from "@/components/ui/button";
 import { PDF_ACCEPT, useFileUpload } from "@/hooks/common/useFileUpload";
 
+const PDF_ONLY = ["application/pdf"];
+
 interface PdfFieldProps {
   id: string;
   value: IMedia | null;
@@ -41,7 +43,7 @@ export function PdfField({ id, value, onChange }: PdfFieldProps) {
           <Upload className="size-4" />
           {isUploading ? t("media.uploading") : value ? t("media.replace") : t("media.uploadFile")}
         </Button>
-        <MediaPicker onSelect={onChange} mimePrefix="application/pdf" />
+        <MediaPicker onSelect={onChange} mimePrefixes={PDF_ONLY} />
         {value && (
           <Button type="button" variant="ghost" size="sm" onClick={handleClear}>
             <X className="size-4" />

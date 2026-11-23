@@ -6,7 +6,7 @@
   "status": "ACTIVE",
   "tags": ["smart-home", "IoT", "assistive-technology", "robotics"],
   "featured": false,
-  "sortOrder": 10,
+  "sortOrder": 16,
   "cover": { "file": "cover.jpg", "alt": "Living Lab apartment with kitchen and dining area" },
   "images": [],
   "members": []

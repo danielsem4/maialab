@@ -6,7 +6,7 @@
   "status": "ACTIVE",
   "tags": ["NFC", "patient-safety", "web", "MADE Lab"],
   "featured": false,
-  "sortOrder": 9,
+  "sortOrder": 15,
   "cover": { "file": "cover.png", "alt": "Phone next to NFC stickers" },
   "images": [],
   "members": []

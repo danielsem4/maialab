@@ -22,6 +22,7 @@ export interface IProjectRepository {
   update(id: number, data: ProjectData, dto: ProjectInputDto): Promise<ProjectRecord>;
   delete(id: number): Promise<void>;
   reorder(ids: number[]): Promise<void>;
+  findMediaTypes(ids: number[]): Promise<Map<number, string>>;
 }
 
 function relations(dto: ProjectInputDto) {
@@ -78,6 +79,11 @@ export class ProjectRepository implements IProjectRepository {
 
   async delete(id: number): Promise<void> {
     await prisma.project.delete({ where: { id } });
+  }
+
+  async findMediaTypes(ids: number[]): Promise<Map<number, string>> {
+    const media = await prisma.media.findMany({ where: { id: { in: ids } }, select: { id: true, mimeType: true } });
+    return new Map(media.map((m) => [m.id, m.mimeType]));
   }
 
   async reorder(ids: number[]): Promise<void> {

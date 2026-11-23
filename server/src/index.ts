@@ -5,7 +5,6 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
-import prisma from './lib/prisma';
 import { authRouter } from './modules/auth/auth.routes';
 import { labInfoRouter, labInfoAdminRouter } from './modules/lab-info/lab-info.routes';
 import { usersAdminRouter } from './modules/users/users.routes';
@@ -16,6 +15,7 @@ import { publicationsRouter, publicationsAdminRouter } from './modules/publicati
 import { mediaAdminRouter } from './modules/media/media.routes';
 import { projectsRouter, projectsAdminRouter } from './modules/projects/projects.routes';
 import { UPLOAD_DIR, UPLOAD_URL_PREFIX } from './shared/storage/localStorage';
+import { usesLocalStorage } from './shared/storage';
 import { errorHandler } from './shared/middlewares/errorHandler';
 
 const app = express();
@@ -24,6 +24,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 // Uploaded images are embedded by the client (dev proxy / separate origin).
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.set('trust proxy', 1);
 app.use(cors({
   origin: process.env['CLIENT_URL'] || 'http://localhost:5173',
   credentials: true,
@@ -37,8 +38,10 @@ app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Uploaded media (public, immutable random filenames)
-app.use(UPLOAD_URL_PREFIX, express.static(UPLOAD_DIR, { maxAge: '30d', immutable: true, index: false }));
+// Uploaded media (public, immutable random filenames); Vercel Blob serves its own files
+if (usesLocalStorage) {
+  app.use(UPLOAD_URL_PREFIX, express.static(UPLOAD_DIR, { maxAge: '30d', immutable: true, index: false }));
+}
 
 // Public routes
 app.use('/api/auth', authRouter);
@@ -61,9 +64,11 @@ app.use('/api/admin/publications', publicationsAdminRouter);
 // Error handler (must be last)
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// On Vercel the exported app is invoked as a function; no port to listen on.
+if (!process.env['VERCEL']) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
 
-export { prisma };
 export default app;

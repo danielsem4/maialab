@@ -10,7 +10,7 @@ import { LabMark } from "./LabMark";
 import { PublicNav } from "./PublicNav";
 
 export function PublicHeader() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const items = usePublicNavItems();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -20,12 +20,12 @@ export function PublicHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b glass-subtle">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:gap-4 sm:px-6">
         <LabMark />
         <div className="hidden md:block">
           <PublicNav items={items} />
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 [&>button]:size-10 md:[&>button]:size-9">
           <LanguageSwitcher />
           <ThemeSwitcher />
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
@@ -34,7 +34,7 @@ export function PublicHeader() {
                 <Menu className="size-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72 p-6">
+            <SheetContent side={i18n.dir() === "rtl" ? "left" : "right"} className="w-72 p-6">
               <SheetTitle className="sr-only">{t("nav.openMenu")}</SheetTitle>
               <SheetDescription className="sr-only">{t("nav.home")}</SheetDescription>
               <div className="mt-8">

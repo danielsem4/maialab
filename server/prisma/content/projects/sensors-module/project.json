@@ -6,7 +6,7 @@
   "status": "COMPLETED",
   "tags": ["sensors", "students", "Parkinson's", "mobile"],
   "featured": false,
-  "sortOrder": 5,
+  "sortOrder": 10,
   "cover": { "file": "cover.png", "alt": "App screen showing a possible Parkinson's tremor detected notice" },
   "images": [
     { "file": "fall.jpg", "caption": "Fall detection notification", "alt": "Phone home screen with a fall-detected notification" },

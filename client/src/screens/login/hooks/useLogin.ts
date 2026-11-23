@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { authApi } from "@/api/authApi";
 import { getApiErrorStatus } from "@/common/utils/apiError";
+import type { IAuthUser } from "@/common/types/User";
 import { useAuthStore } from "@/store/useAuthStore";
 import { credentialsSchema, type CredentialsValues } from "../schema/loginSchema";
 
@@ -25,10 +26,19 @@ export function useLogin() {
     defaultValues: { email: "", password: "" },
   });
 
+  const completeLogin = (user: IAuthUser) => {
+    setAuthUser(user);
+    navigate("/admin", { replace: true });
+  };
+
   const login = useMutation({
     mutationFn: (values: CredentialsValues) => authApi.login(values.email, values.password),
     onSuccess: (result) => {
       setErrorKey(null);
+      if (!result.requiresOtp) {
+        completeLogin(result.user);
+        return;
+      }
       setChallenge({ otpToken: result.otpToken, email: result.email });
     },
     onError: (error) => {
@@ -38,10 +48,7 @@ export function useLogin() {
 
   const verify = useMutation({
     mutationFn: (otp: string) => authApi.verifyOtp(challenge!.otpToken, otp),
-    onSuccess: (user) => {
-      setAuthUser(user);
-      navigate("/admin", { replace: true });
-    },
+    onSuccess: completeLogin,
     onError: (error) => {
       setCode("");
       setErrorKey(getApiErrorStatus(error) === 401 ? "login.invalidCode" : "common.errorGeneric");

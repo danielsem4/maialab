@@ -17,6 +17,7 @@ export default function MediaLibrary() {
     isError,
     inputRef,
     isUploading,
+    progress,
     openFilePicker,
     handleInputChange,
     handleDrop,
@@ -40,6 +41,7 @@ export default function MediaLibrary() {
       <input ref={inputRef} type="file" accept={MEDIA_LIBRARY_ACCEPT} hidden onChange={handleInputChange} />
       <MediaDropZone
         isUploading={isUploading}
+        progress={progress}
         onClick={openFilePicker}
         onDrop={handleDrop}
         onDragOver={handleDragOver}

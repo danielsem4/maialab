@@ -6,7 +6,7 @@
   "status": "ACTIVE",
   "tags": ["AI", "decision-support", "wearables", "collaboration"],
   "featured": false,
-  "sortOrder": 8,
+  "sortOrder": 14,
   "cover": { "file": "cover.png", "alt": "Clinician dashboard chart of glucose, basal and bolus over a day" },
   "images": [
     { "file": "patients.png", "caption": "Doctor's interface: patient list", "alt": "Web table of existing patients" },

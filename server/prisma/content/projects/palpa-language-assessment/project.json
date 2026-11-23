@@ -6,7 +6,7 @@
   "status": "ACTIVE",
   "tags": ["language", "speech-therapy", "tablet", "students", "Herzfeld"],
   "featured": false,
-  "sortOrder": 3,
+  "sortOrder": 8,
   "cover": { "file": "cover.png", "alt": "List of language tests on an iPad" },
   "images": [
     { "file": "free-text.png", "caption": "Free-text answer with an on-screen Hebrew keyboard", "alt": "Evaluation question with Hebrew keyboard" },

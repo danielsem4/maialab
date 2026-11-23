@@ -8,7 +8,7 @@ type LinkKey = keyof typeof LINK_ICONS;
 const LINK_KEYS = Object.keys(LINK_ICONS) as LinkKey[];
 
 const ICON_LINK_CLASS =
-  "inline-flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none";
+  "inline-flex size-11 items-center sm:size-9 justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none";
 
 interface MemberLinksProps {
   member: IMember;

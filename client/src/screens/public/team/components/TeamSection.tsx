@@ -32,7 +32,7 @@ function SectionBody({ group }: TeamSectionProps) {
   }
 
   return (
-    <ul className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-8">
+    <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-8">
       {group.members.map((member) => (
         <MemberPortrait key={member.id} member={member} />
       ))}
@@ -46,7 +46,7 @@ export function TeamSection({ group }: TeamSectionProps) {
 
   return (
     <section aria-labelledby={headingId} className="border-t pt-8">
-      <h2 id={headingId} className="mb-10 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+      <h2 id={headingId} className="mb-6 font-display text-2xl sm:mb-10 font-semibold tracking-tight sm:text-3xl">
         {t(`members.category.${group.category}`)}
       </h2>
       <SectionBody group={group} />

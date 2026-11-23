@@ -1,11 +1,9 @@
 import api from "@/lib/axios";
 import type { IAuthUser } from "@/common/types/User";
 
-export interface ILoginResult {
-  requiresOtp: true;
-  otpToken: string;
-  email: string;
-}
+export type ILoginResult =
+  | { requiresOtp: true; otpToken: string; email: string }
+  | { requiresOtp: false; user: IAuthUser };
 
 export const authApi = {
   async login(email: string, password: string): Promise<ILoginResult> {

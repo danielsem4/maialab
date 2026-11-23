@@ -6,7 +6,7 @@
   "status": "COMPLETED",
   "tags": ["robotics", "AI", "computer-vision", "smart-home", "students"],
   "featured": false,
-  "sortOrder": 7,
+  "sortOrder": 13,
   "cover": { "file": "cover.jpg", "alt": "Person walking beside the Temi robot in the Living Lab" },
   "images": [],
   "members": []

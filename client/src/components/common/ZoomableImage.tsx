@@ -1,3 +1,4 @@
+import { Maximize2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
@@ -24,16 +25,23 @@ export function ZoomableImage({ src, alt, className, triggerClassName, caption, 
           type="button"
           aria-label={t("common.enlargeImage")}
           className={cn(
-            "inline-flex max-w-full cursor-zoom-in items-center justify-center rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "relative inline-flex max-w-full cursor-zoom-in items-center justify-center rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring",
             triggerClassName,
           )}
         >
           <img src={src} alt={alt} loading={loading} className={className} />
+          {/* Touch screens have no zoom cursor, so show that the image opens. */}
+          <span
+            aria-hidden
+            className="absolute end-1.5 bottom-1.5 hidden size-7 items-center justify-center rounded-full bg-background/85 text-foreground shadow-sm [@media(pointer:coarse)]:flex"
+          >
+            <Maximize2 className="size-3.5" />
+          </span>
         </button>
       </DialogTrigger>
       <DialogContent aria-describedby={undefined} className="w-auto max-w-[95vw] gap-2 p-2 sm:max-w-[95vw] sm:p-3">
         <DialogTitle className="sr-only">{alt || t("common.imagePreview")}</DialogTitle>
-        <img src={src} alt={alt} className="max-h-[85vh] w-auto max-w-full rounded-lg object-contain" />
+        <img src={src} alt={alt} className="max-h-[85dvh] w-auto max-w-full rounded-lg object-contain" />
         {caption && <p className="text-center text-sm text-muted-foreground">{caption}</p>}
       </DialogContent>
     </Dialog>

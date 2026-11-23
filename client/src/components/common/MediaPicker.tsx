@@ -16,15 +16,17 @@ import { MediaPickerGrid } from "./MediaPickerGrid";
 
 interface MediaPickerProps {
   onSelect: (media: IMedia) => void;
-  /** Only show files whose MIME type starts with this, e.g. "image/". */
-  mimePrefix?: string;
+  /** Only show files whose MIME type starts with one of these, e.g. ["image/", "video/"]. */
+  mimePrefixes?: string[];
 }
 
-export function MediaPicker({ onSelect, mimePrefix = "image/" }: MediaPickerProps) {
+const IMAGES_ONLY = ["image/"];
+
+export function MediaPicker({ onSelect, mimePrefixes = IMAGES_ONLY }: MediaPickerProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const library = useMediaLibrary(open);
-  const items = (library.data ?? []).filter((m) => m.mimeType.startsWith(mimePrefix));
+  const items = (library.data ?? []).filter((m) => mimePrefixes.some((prefix) => m.mimeType.startsWith(prefix)));
 
   const handleSelect = (media: IMedia) => {
     onSelect(media);

@@ -8,7 +8,10 @@ import { Button } from "@/components/ui/button";
 import { IMAGE_ACCEPT, useFileUpload } from "@/hooks/common/useFileUpload";
 import { useGalleryEditor } from "../hooks/useGalleryEditor";
 import type { ProjectFormValues } from "../schema/projectFormSchema";
+import { AddVideoButton } from "./AddVideoButton";
 import { GalleryRow } from "./GalleryRow";
+
+const GALLERY_MEDIA = ["image/", "video/"];
 
 interface ProjectGallerySectionProps {
   form: UseFormReturn<ProjectFormValues>;
@@ -31,7 +34,8 @@ export function ProjectGallerySection({ form }: ProjectGallerySectionProps) {
         <Upload className="size-4" />
         {isUploading ? t("media.uploading") : t("projects.addImage")}
       </Button>
-      <MediaPicker onSelect={gallery.handleAdd} />
+      <AddVideoButton onUploaded={gallery.handleAdd} />
+      <MediaPicker onSelect={gallery.handleAdd} mimePrefixes={GALLERY_MEDIA} />
       <input ref={inputRef} type="file" accept={IMAGE_ACCEPT} hidden onChange={handleInputChange} />
     </div>
   );

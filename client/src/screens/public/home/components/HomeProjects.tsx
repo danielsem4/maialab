@@ -13,7 +13,7 @@ export function HomeProjects({ projects }: HomeProjectsProps) {
   if (projects.length === 0) return null;
 
   return (
-    <section aria-labelledby="home-projects" className="mx-auto mt-24 max-w-6xl px-4 sm:mt-32 sm:px-6">
+    <section aria-labelledby="home-projects" className="mx-auto mt-14 max-w-6xl px-4 sm:mt-32 sm:px-6">
       <HomeSectionHeading id="home-projects" title={t("site.featuredProjects")} linkTo="/projects" linkLabel={t("site.allProjects")} />
       <ProjectIndex projects={projects} />
     </section>

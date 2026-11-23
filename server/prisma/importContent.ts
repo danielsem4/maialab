@@ -1,6 +1,7 @@
 // Imports lab info, team members and projects from prisma/content/ as drafts.
-// Safe to rerun: existing projects (by slug) and members (by email) are skipped,
-// and lab info only fills empty fields. Pass --force to recreate the projects.
+// Safe to rerun: existing members (by email) only get their order and a changed photo synced,
+// existing projects (by slug) only their order and featured flag, and lab info only fills
+// empty fields. Pass --force to recreate the projects.
 import { PrismaPg } from "@prisma/adapter-pg";
 import { MemberCategory, PrismaClient, ProjectStatus } from "@prisma/client";
 import fs from "fs/promises";
@@ -8,14 +9,14 @@ import path from "path";
 import pg from "pg";
 import { imageSize } from "image-size";
 import "dotenv/config";
-import { storage } from "../src/shared/storage/localStorage";
+import { storage } from "../src/shared/storage";
 
 const pool = new pg.Pool({ connectionString: process.env["DATABASE_URL"] });
 const prisma = new PrismaClient({ adapter: new PrismaPg(pool) });
 
 const CONTENT_DIR = path.join(__dirname, "content");
 const FORCE = process.argv.includes("--force");
-const MIME_TYPES: Record<string, string> = { ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp" };
+const MIME_TYPES: Record<string, string> = { ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".mp4": "video/mp4", ".webm": "video/webm" };
 
 interface ImageRef { file: string; alt: string; caption?: string }
 
@@ -47,7 +48,7 @@ async function createMedia(dir: string, image: ImageRef): Promise<number> {
   const mimeType = MIME_TYPES[extension];
   if (!mimeType) throw new Error(`Unsupported image type: ${image.file}`);
   const buffer = await fs.readFile(path.join(dir, image.file));
-  const { width, height } = imageSize(buffer);
+  const { width, height } = mimeType.startsWith("image/") ? imageSize(buffer) : { width: null, height: null };
   const stored = await storage.save(buffer, extension === ".jpeg" ? ".jpg" : extension);
   const media = await prisma.media.create({
     data: { filename: stored.filename, originalName: image.file, mimeType, size: stored.size, width, height, alt: image.alt },
@@ -69,8 +70,12 @@ async function importLab(): Promise<void> {
   console.log(`Lab info: filled ${Object.keys(updates).join(", ") || "nothing (already set)"}`);
 
   for (const member of members) {
-    if (await prisma.member.findFirst({ where: { email: member.email } })) {
-      console.log(`Member skipped (exists): ${member.name}`);
+    const existing = await prisma.member.findFirst({ where: { email: member.email }, include: { photo: true } });
+    if (existing) {
+      const photoChanged = member.photo && member.photo.file !== existing.photo?.originalName;
+      const photoMediaId = photoChanged && member.photo ? await createMedia(dir, member.photo) : existing.photoMediaId;
+      await prisma.member.update({ where: { id: existing.id }, data: { sortOrder: member.sortOrder, photoMediaId } });
+      console.log(`Member synced (order${photoChanged ? ", photo" : ""}): ${member.name}`);
       continue;
     }
     const photoMediaId = member.photo ? await createMedia(dir, member.photo) : null;
@@ -86,7 +91,11 @@ async function importProject(slug: string): Promise<void> {
 
   const existing = await prisma.project.findUnique({ where: { slug: project.slug } });
   if (existing && !FORCE) {
-    console.log(`Project skipped (exists): ${project.slug}`);
+    await prisma.project.update({
+      where: { id: existing.id },
+      data: { sortOrder: project.sortOrder, featured: project.featured },
+    });
+    console.log(`Project synced (order, featured): ${project.slug}`);
     return;
   }
   if (existing) await prisma.project.delete({ where: { id: existing.id } });

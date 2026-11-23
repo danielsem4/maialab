@@ -17,10 +17,10 @@ export function LabMark() {
     <Link
       to="/"
       onClick={handleTap}
-      className="flex items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+      className="flex min-h-11 min-w-0 items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
     >
-      <img src={logoUrl} alt="" className="size-9 object-contain" />
-      <span className="font-display text-xl font-bold tracking-tight">{labInfo?.name ?? ""}</span>
+      <img src={logoUrl} alt="" className="size-9 shrink-0 object-contain" />
+      <span className="truncate font-display text-lg font-bold tracking-tight sm:text-xl">{labInfo?.name ?? ""}</span>
     </Link>
   );
 }

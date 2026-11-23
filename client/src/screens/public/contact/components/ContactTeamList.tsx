@@ -19,7 +19,7 @@ export function ContactTeamList({ members }: ContactTeamListProps) {
               {member.title}
             </p>
           )}
-          <a href={`mailto:${member.email}`} dir="ltr" className={`mt-1 inline-block text-sm break-all text-primary ${LINK_CLASS}`}>
+          <a href={`mailto:${member.email}`} dir="ltr" className={`inline-flex min-h-10 items-center text-sm break-all text-primary sm:mt-1 sm:min-h-0 ${LINK_CLASS}`}>
             {member.email}
           </a>
         </li>

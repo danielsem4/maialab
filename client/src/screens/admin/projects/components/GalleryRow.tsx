@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import type { UseFormRegister } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import type { IMedia } from "@/common/types/Media";
+import { MediaThumb } from "@/components/common/MediaThumb";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { ProjectFormValues } from "../schema/projectFormSchema";
@@ -22,7 +23,9 @@ export function GalleryRow({ index, media, register, onRemove }: GalleryRowProps
 
   return (
     <div className="flex items-center gap-3">
-      <img src={media.url} alt={media.alt} className="size-16 shrink-0 rounded-md object-cover" />
+      <span className="size-16 shrink-0 overflow-hidden rounded-md bg-muted">
+        <MediaThumb media={media} />
+      </span>
       <Input
         aria-label={t("projects.caption")}
         placeholder={t("projects.caption")}

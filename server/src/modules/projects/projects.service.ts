@@ -31,6 +31,7 @@ export class ProjectService {
   }
 
   async create(userId: number, dto: ProjectInputDto): Promise<ProjectDto> {
+    await this.assertMedia(dto);
     const slug = await this.resolveSlug(dto);
     const { images: _i, members: _m, ...data } = dto;
     const project = await this.repository.create({ ...data, slug }, dto);
@@ -40,6 +41,7 @@ export class ProjectService {
 
   async update(userId: number, id: number, dto: ProjectInputDto): Promise<ProjectDto> {
     await this.getById(id);
+    await this.assertMedia(dto);
     const slug = await this.resolveSlug(dto, id);
     const { images: _i, members: _m, ...data } = dto;
     const project = await this.repository.update(id, { ...data, slug }, dto);
@@ -56,6 +58,22 @@ export class ProjectService {
   async reorder(userId: number, ids: number[]): Promise<void> {
     await this.repository.reorder(ids);
     await recordAudit(userId, 'REORDER', 'Project', 0, { ids });
+  }
+
+  /** The cover must be an image; the gallery takes images and videos (not PDFs or other files). */
+  private async assertMedia(dto: ProjectInputDto): Promise<void> {
+    const galleryIds = dto.images.map((image) => image.mediaId);
+    const types = await this.repository.findMediaTypes([...galleryIds, ...(dto.coverMediaId ? [dto.coverMediaId] : [])]);
+
+    if (dto.coverMediaId && !types.get(dto.coverMediaId)?.startsWith('image/')) {
+      throw new AppError('The cover must be an image', 400);
+    }
+    for (const id of galleryIds) {
+      const type = types.get(id) ?? '';
+      if (!type.startsWith('image/') && !type.startsWith('video/')) {
+        throw new AppError('The gallery can only contain images and videos', 400);
+      }
+    }
   }
 
   private async resolveSlug(dto: ProjectInputDto, excludeId?: number): Promise<string> {

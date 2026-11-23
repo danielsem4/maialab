@@ -33,7 +33,7 @@ export default function ContactPage() {
                 <a
                   href={`mailto:${labInfo.contactEmail}`}
                   dir="ltr"
-                  className={`font-display text-lg font-semibold tracking-tight break-all sm:text-xl ${LINK_CLASS}`}
+                  className={`inline-flex min-h-10 items-center font-display text-lg font-semibold tracking-tight break-all sm:min-h-0 sm:text-xl ${LINK_CLASS}`}
                 >
                   {labInfo.contactEmail}
                 </a>

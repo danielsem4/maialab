@@ -1,27 +1,26 @@
-import { FileText } from "lucide-react";
 import type { IMedia } from "@/common/types/Media";
+import { getMediaKind, videoPosterUrl } from "@/common/utils/mediaKind";
+import { MediaThumb } from "@/components/common/MediaThumb";
 import { cn } from "@/lib/utils";
 
 interface MediaPreviewProps {
   media: IMedia;
   className?: string;
-  /** "cover" crops to fill (grid tiles); "contain" shows the whole image (details). */
+  /** "cover" crops to fill (grid tiles); "contain" shows the whole image (details), and makes videos playable. */
   fit?: "cover" | "contain";
 }
 
 export function MediaPreview({ media, className, fit = "cover" }: MediaPreviewProps) {
-  if (media.mimeType.startsWith("image/")) {
+  if (fit === "contain" && getMediaKind(media.mimeType) === "video") {
     return (
-      <img
-        src={media.url}
-        alt={media.alt}
-        className={cn("size-full", fit === "cover" ? "object-cover" : "object-contain", className)}
+      <video
+        src={videoPosterUrl(media.url)}
+        controls
+        playsInline
+        preload="metadata"
+        className={cn("size-full bg-black object-contain", className)}
       />
     );
   }
-  return (
-    <span className={cn("flex size-full items-center justify-center", className)}>
-      <FileText className="size-10 text-muted-foreground" aria-hidden="true" />
-    </span>
-  );
+  return <MediaThumb media={media} fit={fit} className={className} />;
 }

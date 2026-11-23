@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { PROJECT_STATUSES, type IProject, type ProjectStatus } from "@/common/types/Project";
+import { buildProjectStory } from "@/common/utils/projectStory";
 import type { IProjectGroup } from "@/components/common/ProjectGroups";
 import { usePublishedProjects } from "@/hooks/queries/useProjectQueries";
 
@@ -31,6 +32,7 @@ export function useProjectFilter() {
     projects,
     status,
     groups,
+    story: status ? null : buildProjectStory(all),
     availableStatuses,
     isLoading: query.isLoading,
     isError: query.isError,
