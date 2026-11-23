@@ -381,6 +381,7 @@ const ru = {
     address: "Адрес",
     openMap: "Открыть на карте",
     rights: "© {{year}} {{name}}",
+    hitLogoAlt: "Холонский технологический институт",
     skipToContent: "Перейти к содержимому",
     theme: {
       label: "Тема",

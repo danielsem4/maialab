@@ -381,6 +381,7 @@ const ar = {
     address: "العنوان",
     openMap: "فتح في الخرائط",
     rights: "© {{year}} {{name}}",
+    hitLogoAlt: "معهد حولون للتكنولوجيا",
     skipToContent: "تخطي إلى المحتوى",
     theme: {
       label: "المظهر",
