@@ -34,17 +34,21 @@ const upload = multer({
 });
 
 // Local storage only: videos stream to disk instead of being buffered in memory.
-const videoUpload = multer({
-  storage: multer.diskStorage({
-    destination: UPLOAD_DIR,
-    filename: (_req, file, cb) => cb(null, `${crypto.randomUUID()}${VIDEO_MIME_TYPES[file.mimetype]}`),
-  }),
-  limits: { fileSize: MAX_VIDEO_BYTES, files: 1 },
-  fileFilter: (_req, file, cb) => {
-    if (VIDEO_MIME_TYPES[file.mimetype]) cb(null, true);
-    else cb(new AppError('Unsupported video type', 400));
-  },
-});
+// Built on demand because diskStorage creates UPLOAD_DIR, which fails on a read-only filesystem (Vercel).
+function createVideoFileHandler() {
+  const videoUpload = multer({
+    storage: multer.diskStorage({
+      destination: UPLOAD_DIR,
+      filename: (_req, file, cb) => cb(null, `${crypto.randomUUID()}${VIDEO_MIME_TYPES[file.mimetype]}`),
+    }),
+    limits: { fileSize: MAX_VIDEO_BYTES, files: 1 },
+    fileFilter: (_req, file, cb) => {
+      if (VIDEO_MIME_TYPES[file.mimetype]) cb(null, true);
+      else cb(new AppError('Unsupported video type', 400));
+    },
+  });
+  return single(videoUpload, 'Video is larger than 100 MB');
+}
 
 function single(uploader: multer.Multer, tooLarge: string) {
   return (req: Request, res: Response, next: NextFunction): void => {
@@ -59,7 +63,6 @@ function single(uploader: multer.Multer, tooLarge: string) {
 }
 
 const handleUpload = single(upload, 'File is larger than 4 MB');
-const handleVideoFile = single(videoUpload, 'Video is larger than 100 MB');
 
 /** Issues a short-lived token that lets the browser send one video straight to Vercel Blob. */
 async function videoToken(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -89,7 +92,7 @@ mediaAdminRouter.get('/', controller.list);
 mediaAdminRouter.post('/', handleUpload, controller.upload);
 mediaAdminRouter.get('/upload-config', controller.uploadConfig);
 if (usesLocalStorage) {
-  mediaAdminRouter.post('/video-file', handleVideoFile, controller.uploadVideoFile);
+  mediaAdminRouter.post('/video-file', createVideoFileHandler(), controller.uploadVideoFile);
 } else {
   mediaAdminRouter.post('/video-token', videoToken);
   mediaAdminRouter.post('/video', validateRequest(registerVideoSchema), controller.registerVideo);
