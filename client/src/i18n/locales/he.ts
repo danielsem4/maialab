@@ -381,6 +381,7 @@ const he = {
     address: "כתובת",
     openMap: "פתיחה במפות",
     rights: "© {{year}} {{name}}",
+    hitLogoAlt: "מכון טכנולוגי חולון",
     skipToContent: "דילוג לתוכן",
     theme: {
       label: "ערכת נושא",

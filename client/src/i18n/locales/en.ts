@@ -381,6 +381,7 @@ const en = {
     address: "Address",
     openMap: "Open in maps",
     rights: "© {{year}} {{name}}",
+    hitLogoAlt: "Holon Institute of Technology",
     skipToContent: "Skip to content",
     theme: {
       label: "Theme",
