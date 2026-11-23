@@ -117,7 +117,13 @@ html, body, #root { height: 100%; margin: 0; }
 body {
   margin: 0;
   background: var(--glass-backdrop);
-  background-attachment: fixed;
+}
+
+/* Phones ignore a fixed backdrop (iOS) or repaint it on every scroll frame, so only pin it on larger screens. */
+@media (min-width: 48rem) {
+  body {
+    background-attachment: fixed;
+  }
 }
 
 /* Frosted-glass surfaces. Pair with text-*-foreground as usual. */
@@ -257,5 +263,83 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .demo-conveyor {
     animation-duration: var(--conveyor-duration, 30s) !important;
+  }
+}
+
+/* Projects page platform story: items stay hidden until their section scrolls into view, then plug in one by one (--i staggers them). */
+.story-item {
+  opacity: 0;
+}
+
+[data-revealed="true"] .story-item {
+  animation: story-plug-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+@keyframes story-plug-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Dashed track between the web platform and the app; the dashes travel in the direction the data flows. */
+.story-flow {
+  background: linear-gradient(90deg, var(--primary) 50%, transparent 50%) 0 0 / 12px 100%;
+  animation: story-flow 0.8s linear infinite;
+}
+
+.story-flow-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes story-flow {
+  to {
+    background-position: 12px 0;
+  }
+}
+
+/* Line from the app card down into its modules: it draws itself, then a dot keeps travelling along it. */
+.story-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.7s ease-out;
+}
+
+[data-revealed="true"] .story-line {
+  transform: scaleY(1);
+}
+
+.story-dot {
+  animation: story-dot 1.8s ease-in infinite;
+}
+
+@keyframes story-dot {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* The looping parts are decoration, so reduced motion stops them instead of racing through them. */
+@media (prefers-reduced-motion: reduce) {
+  .story-flow,
+  .story-dot {
+    animation: none !important;
+  }
+
+  .story-dot {
+    display: none;
   }
 }

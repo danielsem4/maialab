@@ -7,7 +7,7 @@ export default function PublicLayout() {
   const { t } = useTranslation();
 
   return (
-    <div className="flex min-h-svh flex-col">
+    <div className="flex min-h-svh flex-col ps-[env(safe-area-inset-left)] pe-[env(safe-area-inset-right)]">
       <a
         href="#content"
         className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"

@@ -17,7 +17,7 @@ function navLinkClass({ isActive }: { isActive: boolean }) {
 
 export function PublicNav({ items, orientation = "horizontal", onNavigate }: PublicNavProps) {
   return (
-    <nav className={cn("flex", orientation === "vertical" ? "flex-col gap-1" : "items-center gap-1")}>
+    <nav className={cn("flex", orientation === "vertical" ? "flex-col gap-1 [&>a]:flex [&>a]:min-h-11 [&>a]:items-center" : "items-center gap-1")}>
       {items.map((item) => (
         <NavLink key={item.url} to={item.url} className={navLinkClass} onClick={onNavigate}>
           {item.title}

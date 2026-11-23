@@ -15,6 +15,7 @@ export interface IMediaRepository {
   create(data: CreateMediaData): Promise<MediaRecord>;
   findAll(): Promise<MediaRecord[]>;
   findById(id: number): Promise<MediaRecord | null>;
+  findByFilename(filename: string): Promise<MediaRecord | null>;
   updateAlt(id: number, alt: string): Promise<MediaRecord>;
   countReferences(id: number): Promise<number>;
   delete(id: number): Promise<void>;
@@ -31,6 +32,10 @@ export class MediaRepository implements IMediaRepository {
 
   async findById(id: number): Promise<MediaRecord | null> {
     return prisma.media.findUnique({ where: { id } });
+  }
+
+  async findByFilename(filename: string): Promise<MediaRecord | null> {
+    return prisma.media.findUnique({ where: { filename } });
   }
 
   async updateAlt(id: number, alt: string): Promise<MediaRecord> {

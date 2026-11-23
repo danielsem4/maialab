@@ -11,6 +11,10 @@ export function useUploadMedia() {
   return useApiMutation({ mutationFn: mediaApi.upload, invalidate: [queryKeys.media] });
 }
 
+export function useUploadVideo() {
+  return useApiMutation({ mutationFn: mediaApi.uploadVideo, invalidate: [queryKeys.media] });
+}
+
 export function useUpdateMediaAlt() {
   return useApiMutation({
     mutationFn: ({ id, alt }: { id: number; alt: string }) => mediaApi.updateAlt(id, alt),

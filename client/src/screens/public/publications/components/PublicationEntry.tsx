@@ -4,7 +4,7 @@ import type { IPublication } from "@/common/types/Publication";
 import { safeHref } from "@/common/utils/safeHref";
 
 const LINK_CLASS =
-  "font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none";
+  "inline-flex min-h-10 items-center font-medium text-primary underline-offset-4 sm:min-h-0 hover:underline focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none";
 
 interface PublicationEntryProps {
   publication: IPublication;
@@ -30,7 +30,7 @@ export function PublicationEntry({ publication }: PublicationEntryProps) {
       <p className="mt-2 text-muted-foreground">{publication.authors}</p>
       {publication.venue && <p className="mt-1 italic">{publication.venue}</p>}
       {hasLinks && (
-        <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm sm:mt-3 sm:gap-y-2">
           {url && (
             <a href={url} target="_blank" rel="noreferrer" className={LINK_CLASS}>
               {t("publications.readPaper")}

@@ -8,19 +8,11 @@
   },
   "members": [
     {
-      "name": "Eran Katsav",
-      "title": "MAIA Lab Manager",
-      "email": "erankatsav@gmail.com",
-      "category": "STAFF",
-      "sortOrder": 0,
-      "photo": { "file": "eran-katsav.jpg", "alt": "Eran Katsav" }
-    },
-    {
       "name": "Dr. Refael (Barak) Barkan",
       "title": "VP for Innovation, Entrepreneurship and Internationalization at HIT",
       "email": "refaelb@hit.ac.il",
       "category": "STAFF",
-      "sortOrder": 1,
+      "sortOrder": 0,
       "photo": { "file": "refael-barkan.jpg", "alt": "Dr. Refael Barkan" }
     },
     {
@@ -28,8 +20,16 @@
       "title": "Head of Digital Health Ventures",
       "email": "hadasl@hit.ac.il",
       "category": "STAFF",
-      "sortOrder": 2,
+      "sortOrder": 1,
       "photo": { "file": "hadas-lewy.png", "alt": "Dr. Hadas Lewy" }
+    },
+    {
+      "name": "Eran Katsav",
+      "title": "MAIA Lab Manager",
+      "email": "erankatsav@gmail.com",
+      "category": "STAFF",
+      "sortOrder": 2,
+      "photo": { "file": "eran-katsav-portrait.jpg", "alt": "Eran Katsav" }
     },
     {
       "name": "Daniel Semerjian",

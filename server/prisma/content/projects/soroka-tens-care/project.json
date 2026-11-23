@@ -6,7 +6,7 @@
   "status": "ACTIVE",
   "tags": ["pain", "TENS", "PROMs", "graphs", "Soroka"],
   "featured": false,
-  "sortOrder": 4,
+  "sortOrder": 9,
   "cover": { "file": "cover.png", "alt": "Bar chart comparing TENS device use with pain levels" },
   "images": [
     { "file": "pain-front.jpg", "caption": "Pain map — front", "alt": "Human body model, front view, with pain points" },

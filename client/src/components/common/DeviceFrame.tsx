@@ -9,17 +9,23 @@ const DEVICES: Record<DeviceType, { width: number; height: number; bezel: number
   ipad: { width: 1024, height: 768, bezel: 22 },
 };
 
+/** Bezel in compact mode: just enough to still read as a device. */
+const COMPACT_BEZEL = 6;
+
 interface DeviceFrameProps {
   device: DeviceType;
+  /** Thin bezel and the whole viewport height, for showing the frame full-screen on a small display. */
+  compact?: boolean;
   children: ReactNode;
 }
 
 /** A CSS iPhone/iPad mockup. The screen keeps its real pixel size and the whole frame scales to fit. */
-export function DeviceFrame({ device, children }: DeviceFrameProps) {
-  const { width, height, bezel } = DEVICES[device];
+export function DeviceFrame({ device, compact, children }: DeviceFrameProps) {
+  const { width, height } = DEVICES[device];
+  const bezel = compact ? COMPACT_BEZEL : DEVICES[device].bezel;
   const frameWidth = width + bezel * 2;
   const frameHeight = height + bezel * 2;
-  const { containerRef, scale } = useFitScale<HTMLDivElement>(frameWidth, frameHeight);
+  const { containerRef, scale } = useFitScale<HTMLDivElement>(frameWidth, frameHeight, compact ? 1 : undefined);
 
   return (
     <div ref={containerRef} className="w-full">
@@ -27,17 +33,17 @@ export function DeviceFrame({ device, children }: DeviceFrameProps) {
         <div
           className={cn(
             "relative origin-top-left bg-neutral-900 rtl:origin-top-right shadow-2xl ring-1 ring-neutral-700",
-            device === "iphone" ? "rounded-[3.5rem]" : "rounded-[2.5rem]",
+            compact ? "rounded-2xl" : device === "iphone" ? "rounded-[3.5rem]" : "rounded-[2.5rem]",
           )}
           style={{ width: frameWidth, height: frameHeight, padding: bezel, transform: `scale(${scale})` }}
         >
-          {device === "ipad" && (
+          {device === "ipad" && !compact && (
             <span className="absolute top-2 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-neutral-700" aria-hidden />
           )}
           <div
             className={cn(
               "demo-theme relative size-full overflow-hidden bg-background text-foreground",
-              device === "iphone" ? "rounded-[2.75rem]" : "rounded-[1.25rem]",
+              compact ? "rounded-xl" : device === "iphone" ? "rounded-[2.75rem]" : "rounded-[1.25rem]",
             )}
           >
             {device === "iphone" && (

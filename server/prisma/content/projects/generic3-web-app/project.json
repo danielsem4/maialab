@@ -1,0 +1,32 @@
+{
+  "slug": "generic3-web-app",
+  "title": "Generic3 web app",
+  "summary": "Medical CRM & Clinical Management Platform \n\nA centralized clinical management platform fully connected to the **DMT – PROMS++ mobile application**. Healthcare professionals can manage patients, configure clinical modules, assign medical questionnaires, cognitive tests, medications, and activities, and deliver them directly to patients through the mobile app.\n\nPatient responses, test results, and collected data are synchronized with the CRM, enabling healthcare teams to monitor progress, analyze outcomes, and manage the entire clinical workflow from one platform.",
+  "description": "# Medical CRM & Clinical Management Platform\n**Platform:** [Visit the Medical CRM](https://generic3.hitheal.org.il/)\n## Overview\n\nThe Medical CRM & Clinical Management Platform is a centralized, web-based system designed to manage clinical workflows, patient information, and digital healthcare activities.\n\nThe platform is fully integrated with the **DMT – PROMS++ mobile application**, creating a connected digital healthcare ecosystem between medical professionals and patients.\n\nThrough the CRM, healthcare teams can configure clinical modules, manage patients, create and assign questionnaires, schedule activities, manage medications, and distribute cognitive and clinical assessments directly to patients.\n\nPatients interact with these assignments through the PROMS++ mobile application, while their responses, assessment results, and collected information are sent back to the CRM for monitoring and analysis.\n\n## Who Is It For?\n\n- **Doctors and Healthcare Professionals:** Manage patients, assign clinical assessments and activities, and monitor patient progress.\n- **Clinic Managers:** Manage clinic resources, configure available modules, and analyze clinical data.\n- **Medical Researchers:** Collect structured patient-reported outcomes, cognitive assessment results, and other clinical data for research and analysis.\n- **Patients:** Receive and complete assigned assessments, questionnaires, and activities through the PROMS++ mobile application.\n\n## CRM & PROMS++ Integration\n\nThe connection between the CRM and PROMS++ is a core component of the platform.\n\n**The CRM serves as the management and configuration environment, while PROMS++ serves as the patient-facing mobile application.**\n\nThe integrated workflow includes:\n\n1. **Configure:** Healthcare professionals manage clinical modules, questionnaires, cognitive tests, medications, and activities through the CRM.\n2. **Assign:** Relevant modules and assessments are assigned to individual patients according to their clinical needs.\n3. **Deliver:** Assigned content becomes available to patients through the PROMS++ mobile application.\n4. **Complete:** Patients perform questionnaires, cognitive tests, and other assigned activities directly within the application.\n5. **Synchronize:** Patient responses, assessment results, and collected data are transferred to the CRM.\n6. **Monitor & Analyze:** Healthcare professionals review results, track patient progress, and analyze clinical information through dashboards and reports.\n\n## Key Capabilities\n\n### Centralized Patient Management\nManage patient profiles, clinical information, assigned modules, medical records, and evaluation history in one location.\n\n### Configurable Clinical Modules\nManage and assign different clinical modules according to each clinic's needs, supporting flexible clinical and research workflows.\n\n### Medical Questionnaires & Cognitive Assessments\nConfigure and assign medical questionnaires and supported cognitive tests through the CRM, allowing patients to complete them through PROMS++.\n\n### Medication & Activity Management\nAssign medications, schedules, reminders, and activities to patients, with relevant information accessible through the mobile application.\n\n### Clinical Analytics & Reporting\nVisualize patient responses, assessment scores, medication information, and clinical activity through interactive dashboards, charts, and reports.\n\n### Role-Based Management\nProvide doctors, clinic managers, and administrators with access to the tools and information relevant to their responsibilities.\n\n## Technology & Architecture\n\nThe CRM is developed using **React, TypeScript, Django REST Framework, and PostgreSQL**.\n\nTogether with the PROMS++ mobile application, it forms an API-connected system that supports clinical configuration, patient interaction, data collection, and centralized analysis.\n\n## Platform Vision\n\nThe goal is to establish a unified digital healthcare ecosystem that connects clinical teams and patients throughout the entire care and research process.\n\nBy bringing together clinical management, mobile-based assessments, patient-reported outcomes, cognitive testing, and centralized analytics, the platform supports continuous patient monitoring, structured medical research, and more efficient healthcare workflows.",
+  "status": "ACTIVE",
+  "tags": [],
+  "featured": true,
+  "sortOrder": 0,
+  "cover": {
+    "file": "cover.png",
+    "alt": "Generic3 web app"
+  },
+  "images": [
+    {
+      "file": "screen-1.png",
+      "caption": "",
+      "alt": "Generic3 web app screen 1"
+    },
+    {
+      "file": "screen-2.png",
+      "caption": "",
+      "alt": "Generic3 web app screen 2"
+    },
+    {
+      "file": "screen-3.png",
+      "caption": "",
+      "alt": "Generic3 web app screen 3"
+    }
+  ],
+  "members": []
+}

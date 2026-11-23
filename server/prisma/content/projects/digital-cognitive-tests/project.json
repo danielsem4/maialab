@@ -6,7 +6,7 @@
   "status": "ACTIVE",
   "tags": ["cognitive-tests", "tablet", "clinical-trial", "older-adults", "Beit Rivka"],
   "featured": false,
-  "sortOrder": 1,
+  "sortOrder": 11,
   "cover": { "file": "cover.jpg", "alt": "Clock drawing test on a tablet, with a hand-drawn clock" },
   "images": [
     { "file": "clock-set.jpg", "caption": "Clock test: setting the time", "alt": "Clock face with hands to set" },

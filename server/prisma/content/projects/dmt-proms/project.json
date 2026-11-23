@@ -6,7 +6,7 @@
   "status": "ACTIVE",
   "tags": ["mobile", "platform", "PROMs", "Parkinson's", "clinical-trial"],
   "featured": true,
-  "sortOrder": 0,
+  "sortOrder": 1,
   "cover": { "file": "cover.jpg", "alt": "DMT – Proms++ home screen on two phones" },
   "images": [
     { "file": "login.jpg", "caption": "Sign-in with an account created by the therapist", "alt": "DMT login screen" },

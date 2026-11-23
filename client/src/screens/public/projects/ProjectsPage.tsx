@@ -3,6 +3,7 @@ import { ProjectGroups } from "@/components/common/ProjectGroups";
 import { ProjectIndex } from "@/components/common/ProjectIndex";
 import { PublicPageHeader } from "@/components/common/PublicPageHeader";
 import { QueryState } from "@/components/common/QueryState";
+import { ProjectStory } from "./components/ProjectStory";
 import { StatusFilter } from "./components/StatusFilter";
 import { useProjectFilter } from "./hooks/useProjectFilter";
 
@@ -23,7 +24,9 @@ export default function ProjectsPage() {
           isEmpty={filter.isEmpty}
           empty={t("projects.publicEmpty")}
         >
-          {filter.status ? <ProjectIndex projects={filter.projects} /> : <ProjectGroups groups={filter.groups} />}
+          {filter.story && <ProjectStory story={filter.story} />}
+          {!filter.story &&
+            (filter.status ? <ProjectIndex projects={filter.projects} /> : <ProjectGroups groups={filter.groups} />)}
         </QueryState>
       </section>
     </>

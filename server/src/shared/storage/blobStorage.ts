@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 import path from 'path';
-import { del, put } from '@vercel/blob';
-import type { IStorage, StoredFile } from './IStorage';
+import { BlobNotFoundError, del, head, put } from '@vercel/blob';
+import type { FileInfo, IStorage, StoredFile } from './IStorage';
 
 const CONTENT_TYPES: Record<string, string> = {
   '.jpg': 'image/jpeg',
@@ -10,6 +10,8 @@ const CONTENT_TYPES: Record<string, string> = {
   '.webp': 'image/webp',
   '.gif': 'image/gif',
   '.pdf': 'application/pdf',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
 };
 
 // Vercel Blob (public store). Uses BLOB_READ_WRITE_TOKEN; files are served
@@ -26,6 +28,16 @@ export class BlobStorage implements IStorage {
       contentType: CONTENT_TYPES[ext] ?? 'application/octet-stream',
     });
     return { filename, size: buffer.length };
+  }
+
+  async stat(filename: string): Promise<FileInfo | null> {
+    try {
+      const blob = await head(this.publicUrl(path.basename(filename)));
+      return { size: blob.size, contentType: blob.contentType };
+    } catch (err) {
+      if (err instanceof BlobNotFoundError) return null;
+      throw err;
+    }
   }
 
   async remove(filename: string): Promise<void> {

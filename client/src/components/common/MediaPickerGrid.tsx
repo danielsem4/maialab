@@ -1,6 +1,7 @@
-import { FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import type { IMedia } from "@/common/types/Media";
+import { getMediaKind } from "@/common/utils/mediaKind";
+import { MediaThumb } from "./MediaThumb";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface MediaPickerGridProps {
@@ -26,13 +27,9 @@ function MediaPickerTile({ media, onSelect }: MediaPickerTileProps) {
       className="group relative aspect-square overflow-hidden rounded-md border bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
       title={media.originalName}
     >
-      {media.mimeType.startsWith("image/") ? (
-        <img src={media.url} alt={media.alt} className="size-full object-cover transition group-hover:scale-105" />
-      ) : (
-        <span className="flex size-full flex-col items-center justify-center gap-2 p-2 text-xs">
-          <FileText className="size-8 text-muted-foreground" />
-          <span className="line-clamp-2 break-all">{media.originalName}</span>
-        </span>
+      <MediaThumb media={media} className="transition group-hover:scale-105" />
+      {getMediaKind(media.mimeType) === "file" && (
+        <span className="absolute inset-x-0 bottom-0 line-clamp-2 p-2 text-xs break-all">{media.originalName}</span>
       )}
     </button>
   );

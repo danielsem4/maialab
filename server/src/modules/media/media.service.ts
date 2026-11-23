@@ -5,7 +5,7 @@ import type { IStorage } from '../../shared/storage/IStorage';
 import { recordAudit } from '../../shared/utils/audit';
 import { toMediaDto, type MediaDto } from '../../shared/utils/media';
 import type { IMediaRepository } from './media.repository';
-import { ALLOWED_MIME_TYPES } from './media.schema';
+import { ALLOWED_MIME_TYPES, MAX_VIDEO_BYTES, VIDEO_MIME_TYPES, type RegisterVideoDto } from './media.schema';
 
 export interface UploadedFile {
   buffer: Buffer;
@@ -42,6 +42,34 @@ export class MediaService {
       mimeType: file.mimetype,
       size: stored.size,
       ...dimensions,
+      uploadedById: userId,
+    });
+    await recordAudit(userId, 'CREATE', 'Media', media.id);
+    return toMediaDto(media);
+  }
+
+  /**
+   * Records a video that is already in the store (uploaded straight from the browser, or written to disk locally).
+   * Size and type come from the store itself, and a file that breaks the rules is deleted again.
+   */
+  async registerVideo(userId: number, dto: RegisterVideoDto): Promise<MediaDto> {
+    const file = await this.storage.stat(dto.filename);
+    if (!file) throw new AppError('The uploaded video could not be found', 400);
+    if (!VIDEO_MIME_TYPES[file.contentType] || file.size > MAX_VIDEO_BYTES) {
+      await this.storage.remove(dto.filename);
+      throw new AppError(file.size > MAX_VIDEO_BYTES ? 'Video is larger than 100 MB' : 'Unsupported video type', 400);
+    }
+    if (await this.repository.findByFilename(dto.filename)) {
+      throw new AppError('This video is already in the library', 409);
+    }
+
+    const media = await this.repository.create({
+      filename: dto.filename,
+      originalName: path.basename(dto.originalName).slice(0, 200),
+      mimeType: file.contentType,
+      size: file.size,
+      width: dto.width,
+      height: dto.height,
       uploadedById: userId,
     });
     await recordAudit(userId, 'CREATE', 'Media', media.id);

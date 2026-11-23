@@ -26,7 +26,7 @@ export function SocialLinks({ links }: SocialLinksProps) {
               target="_blank"
               rel="noreferrer"
               aria-label={t(`labInfo.fields.${key}`)}
-              className="inline-flex size-9 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+              className="inline-flex size-11 items-center sm:size-9 justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
             >
               <Icon className="size-4" />
             </a>

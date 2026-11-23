@@ -1,15 +1,15 @@
 import { useState } from "react";
 import type { IMedia } from "@/common/types/Media";
-import { IMAGE_ACCEPT, PDF_ACCEPT, useFileUpload } from "@/hooks/common/useFileUpload";
+import { IMAGE_ACCEPT, PDF_ACCEPT, VIDEO_ACCEPT, useFileUpload } from "@/hooks/common/useFileUpload";
 import { useMediaLibrary } from "@/hooks/queries/useMediaQueries";
 
-export const MEDIA_LIBRARY_ACCEPT = `${IMAGE_ACCEPT},${PDF_ACCEPT}`;
+export const MEDIA_LIBRARY_ACCEPT = `${IMAGE_ACCEPT},${PDF_ACCEPT},${VIDEO_ACCEPT}`;
 
 const noop = () => {};
 
 export function useMediaLibraryScreen() {
   const query = useMediaLibrary();
-  const { inputRef, isUploading, openFilePicker, handleInputChange, handleDrop, handleDragOver } = useFileUpload(
+  const { inputRef, isUploading, progress, openFilePicker, handleInputChange, handleDrop, handleDragOver } = useFileUpload(
     MEDIA_LIBRARY_ACCEPT,
     noop,
   );
@@ -37,6 +37,7 @@ export function useMediaLibraryScreen() {
     isError: query.isError,
     inputRef,
     isUploading,
+    progress,
     openFilePicker,
     handleInputChange,
     handleDrop,

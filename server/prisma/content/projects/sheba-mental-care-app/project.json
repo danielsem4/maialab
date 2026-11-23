@@ -6,7 +6,7 @@
   "status": "COMPLETED",
   "tags": ["mental-health", "students", "mobile", "Sheba"],
   "featured": false,
-  "sortOrder": 6,
+  "sortOrder": 12,
   "cover": { "file": "cover.jpg", "alt": "Feelings questionnaire with photos and a rating slider" },
   "images": [
     { "file": "body.jpg", "caption": "Marking where it hurts on a body character", "alt": "Body character with a marked pain area" },
