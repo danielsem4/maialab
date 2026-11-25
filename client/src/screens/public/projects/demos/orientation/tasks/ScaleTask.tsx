@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import type { IDemoTaskProps } from "@/common/types/Demo";
 import { Button } from "@/components/ui/button";
 import { TaskLayout } from "../../components/TaskLayout";
-import { useScaleSlider } from "../hooks/useScaleSlider";
+import { useScaleSlider } from "../../hooks/useScaleSlider";
 
 const MIN = 0;
 const MAX = 10;

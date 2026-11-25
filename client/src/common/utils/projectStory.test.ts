@@ -15,6 +15,7 @@ describe("isAppModule", () => {
     expect(isAppModule("clock-drawing-test")).toBe(true);
     expect(isAppModule("digital-cognitive-tests")).toBe(true);
     expect(isAppModule("sensors-module")).toBe(true);
+    expect(isAppModule("parkinson-belinson")).toBe(true);
   });
 
   it("is false for the platforms and unrelated projects", () => {
@@ -54,6 +55,12 @@ describe("buildProjectStory", () => {
   it("keeps the incoming order inside each group", () => {
     const story = buildProjectStory([...all].reverse());
     expect(slugs(story?.cognitive ?? [])).toEqual(["memory-test", "clock-drawing-test"]);
+  });
+
+  it("puts the Parkinson module with the app's modules, not the rest", () => {
+    const story = buildProjectStory([...all, project("parkinson-belinson")]);
+    expect(slugs(story?.modules ?? [])).toEqual(["palpa-language-assessment", "parkinson-belinson"]);
+    expect(slugs(story?.rest ?? [])).toEqual(["hit-living-lab"]);
   });
 
   it("has no overview when that project is not published", () => {

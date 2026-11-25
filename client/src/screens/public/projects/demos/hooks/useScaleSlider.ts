@@ -1,6 +1,6 @@
 import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { snapToStep } from "@/common/utils/orientationUtils";
-import { localPointer } from "../../hooks/useDraggables";
+import { localPointer } from "./useDraggables";
 
 const KEY_DELTAS: Record<string, number> = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 };
 

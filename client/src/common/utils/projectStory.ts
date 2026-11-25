@@ -16,7 +16,7 @@ export const COGNITIVE_MODULE_SLUGS = [
   "supermarket-test",
 ];
 
-export const OTHER_MODULE_SLUGS = ["palpa-language-assessment", "soroka-tens-care", "sensors-module"];
+export const OTHER_MODULE_SLUGS = ["palpa-language-assessment", "soroka-tens-care", "parkinson-belinson", "sensors-module"];
 
 export interface IProjectStory {
   web: IProject;

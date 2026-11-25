@@ -41,8 +41,9 @@ export function DeviceFrame({ device, compact, children }: DeviceFrameProps) {
             <span className="absolute top-2 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-neutral-700" aria-hidden />
           )}
           <div
+            data-device={device}
             className={cn(
-              "demo-theme relative size-full overflow-hidden bg-background text-foreground",
+              "group/device demo-theme relative size-full overflow-hidden bg-background text-foreground",
               compact ? "rounded-xl" : device === "iphone" ? "rounded-[2.75rem]" : "rounded-[1.25rem]",
             )}
           >

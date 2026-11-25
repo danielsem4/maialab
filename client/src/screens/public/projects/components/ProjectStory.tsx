@@ -51,6 +51,12 @@ export function ProjectStory({ story }: ProjectStoryProps) {
           </header>
           <div className="space-y-10 sm:space-y-12">
             <ModuleSection
+              id="story-modules"
+              title={t("projects.story.otherModulesTitle")}
+              projects={story.modules}
+              moduleOf={moduleOf}
+            />
+            <ModuleSection
               id="story-cognitive"
               title={t("projects.story.cognitiveTitle")}
               projects={story.cognitive}
@@ -67,12 +73,6 @@ export function ProjectStory({ story }: ProjectStoryProps) {
                   </Link>
                 )
               }
-            />
-            <ModuleSection
-              id="story-modules"
-              title={t("projects.story.otherModulesTitle")}
-              projects={story.modules}
-              moduleOf={moduleOf}
             />
           </div>
         </div>

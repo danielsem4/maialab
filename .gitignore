@@ -33,6 +33,9 @@ Thumbs.db
 
 # Test coverage
 coverage/
+
+# Content backups written by db:mirror-content
+backups/
 .neon
 .vercel
 .env*
