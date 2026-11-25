@@ -22,7 +22,7 @@ export function DemoRunner({ i18nPrefix, tasks }: DemoRunnerProps) {
 
   return (
     <div className="flex size-full flex-col select-none">
-      <header className="flex items-center gap-2 bg-primary px-4 pt-9 pb-3 text-primary-foreground">
+      <header className="flex items-center gap-2 bg-primary px-4 pt-9 pb-3 text-primary-foreground group-data-[device=iphone]/device:pt-14">
         <Button
           variant="ghost"
           size="icon"

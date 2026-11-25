@@ -8,6 +8,6 @@ export function useProjectModuleLinks(slug: string) {
 
   return {
     parent: story && isAppModule(slug) ? story.app : null,
-    modules: story && slug === APP_PLATFORM_SLUG ? [...story.cognitive, ...story.modules] : [],
+    modules: story && slug === APP_PLATFORM_SLUG ? [...story.modules, ...story.cognitive] : [],
   };
 }

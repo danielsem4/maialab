@@ -15,7 +15,7 @@ export function DemoIntro({ i18nPrefix, taskCount, onStart }: DemoIntroProps) {
     <div className="flex size-full flex-col items-center justify-center gap-6 px-10 text-center">
       <p className="max-w-xl text-xl leading-relaxed">{t(`${i18nPrefix}.intro`)}</p>
       <p className="text-muted-foreground">{t("demos.common.taskCount", { total: taskCount })}</p>
-      <Button size="lg" className="h-14 w-80 text-lg" onClick={onStart}>
+      <Button size="lg" className="h-14 w-80 max-w-full text-lg" onClick={onStart}>
         <Play className="size-5 rtl:rotate-180" />
         {t("demos.common.start")}
       </Button>

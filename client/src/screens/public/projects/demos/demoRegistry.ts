@@ -9,6 +9,8 @@ const DEMOS: Record<string, IDemoDefinition> = {
   "memory-test": { device: "ipad", component: lazy(() => import("./memory/MemoryDemo")) },
   "orientation-test": { device: "ipad", component: lazy(() => import("./orientation/OrientationDemo")) },
   "palpa-language-assessment": { device: "ipad", component: lazy(() => import("./palpa/PalpaDemo")) },
+  "parkinson-belinson": { device: "iphone", component: lazy(() => import("./parkinson/ParkinsonDemo")) },
+  "soroka-tens-care": { device: "iphone", component: lazy(() => import("./tens/TensDemo")) },
   "supermarket-test": { device: "ipad", component: lazy(() => import("./supermarket/SupermarketDemo")) },
 };
 

@@ -12,6 +12,7 @@
     "db:studio": "npx prisma studio",
     "db:seed": "npx prisma db seed",
     "db:import-content": "npx ts-node prisma/importContent.ts",
+    "db:mirror-content": "npx ts-node prisma/mirrorContent.ts",
     "postinstall": "prisma generate"
   },
   "keywords": [],
